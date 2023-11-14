@@ -14,10 +14,10 @@ if __name__ == '__main__':
     with app.app_context():
         print("Clearing Database(db)...")
         User.query.delete()
-        Group.query.delete()
-        User_Group.query.delete()
-        Post.query.delete()
-        Comment.query.delete()
+        # Group.query.delete()
+        # User_Group.query.delete()
+        # Post.query.delete()
+        # Comment.query.delete()
 
         print("Seeding users...")
         print("Seeding groups...")
