@@ -3,6 +3,8 @@
 from config import app
 from routes.user_routes import users
 from routes.group_routes import groups
+from routes.post_routes import posts
+from routes.comment_routes import comments
 
 # Main Server View:
 @app.route('/')
