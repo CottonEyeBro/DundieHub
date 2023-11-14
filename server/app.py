@@ -1,23 +1,14 @@
 #!/usr/bin/env python3
 
-# Standard library imports
+from config import app
+from routes.user_routes import users
 
-# Remote library imports
-from flask import request
-from flask_restful import Resource
-
-# Local imports
-from config import app, db, api
-# Add your model imports
-
-
-# Views go here!
-
+# Main Server View:
 @app.route('/')
 def index():
-    return '<h1>Project Server</h1>'
+    return '<h1>Cooper Lindsley Capstone Project Server</h1>'
 
-
+# Run python app.py
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
