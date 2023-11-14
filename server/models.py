@@ -67,16 +67,15 @@ class User_Group(db.Model, SerializerMixin): # =================================
 
     # Build Table Columns
     join_table_id = db.Column(db.Integer, primary_key = True)
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    # group_id = db.Column(db.Integer, db.ForeignKey('groups.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    group_id = db.Column(db.Integer, db.ForeignKey('groups.id'))
 
     # Relationships
 
 
     # __repr__
     def __repr__(self):
-        return f'<User Group {self.join_table_id}: ________________________ \n>'
-    # User ID: {self.user_id}. Group ID: {self.group_id}.
+        return f'<User Group {self.join_table_id}: User ID: {self.user_id}. Group ID: {self.group_id}.\n>'
 
 
 
@@ -128,7 +127,7 @@ class Post(db.Model, SerializerMixin): # =======================================
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.String)
     posted_at = db.Column(db.String)
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # img_content = db.Column() -------------------------> Stretch goal
 
     # Relationships
@@ -144,8 +143,7 @@ class Post(db.Model, SerializerMixin): # =======================================
 
     # __repr__
     def __repr__(self):
-        return f'<Post {self.id}: Content {self.content}. Posted At: {self.posted_at}. ______________________________ \n>'
-    #  User ID: {self.user_id}.
+        return f'<Post {self.id}: Content {self.content}. Posted At: {self.posted_at}. User ID: {self.user_id}.\n>'
 
 
 
@@ -160,8 +158,8 @@ class Comment(db.Model, SerializerMixin): # ====================================
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.String)
     commented_at = db.Column(db.String)
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    # post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     # img_content = db.Column() -------------------------> Stretch goal 
 
     # Relationships
@@ -177,5 +175,4 @@ class Comment(db.Model, SerializerMixin): # ====================================
 
     # __repr__
     def __repr__(self):
-        return f'<Comment {self.id}: Content {self.content}. Commented At: {self.commented_at}. ____________________________________ \n>'
-    # User ID: {self.user_id}. Post ID: {self.post_id}.
+        return f'<Comment {self.id}: Content {self.content}. Commented At: {self.commented_at}. User ID: {self.user_id}. Post ID: {self.post_id}.\n>'
