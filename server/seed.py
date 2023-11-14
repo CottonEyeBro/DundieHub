@@ -4,14 +4,26 @@
 from random import randint, choice as rc
 
 # Remote library imports
-from faker import Faker
+import datetime
 
 # Local imports
 from app import app
-from models import db
+from models import db, User, User_Group, Group, Post, Comment
 
 if __name__ == '__main__':
-    fake = Faker()
     with app.app_context():
-        print("Starting seed...")
-        # Seed code goes here!
+        print("Clearing Database(db)...")
+        User.query.delete()
+        Group.query.delete()
+        User_Group.query.delete()
+        Post.query.delete()
+        Comment.query.delete()
+
+        print("Seeding users...")
+        print("Seeding groups...")
+        print("Seeding user_groups...")
+        print("Seeding posts...")
+        print("Seeding comments...")
+
+        print("Done seeding!... That's what she said!")
+
