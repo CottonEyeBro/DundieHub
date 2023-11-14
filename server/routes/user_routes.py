@@ -11,3 +11,4 @@ def users():
         user_dict,
         200
     )
+    return response
