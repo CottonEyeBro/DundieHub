@@ -26,6 +26,20 @@ def create_users():
     )
     users = [u1, u2]
     return users
+
+def create_groups():
+    g1 = Group(
+        group_name = "World's Best Boss",
+        group_desc = 'Reserved for Dunder Mifflin Regional Managers with over 17 Dundies ONLY',
+        group_started = datetime.datetime(month = 5, day = 12, year = 2023, hour = 6, minute = 21, second = 0, microsecond = 0, fold = 0)
+    )
+    g2 = Group(
+        group_name = 'Bears, Beets, Battlestar Galactica Fanclub',
+        group_desc = 'The only things that matter, objectively',
+        group_started = datetime.datetime(month = 7, day = 11, year = 2023, hour = 11, minute = 4, second = 0, microsecond = 0, fold = 0)
+    )
+    groups = [g1, g2]
+    return groups
     
 
 if __name__ == '__main__':
@@ -43,6 +57,10 @@ if __name__ == '__main__':
         db.session.commit()
 
         print("Seeding groups...")
+        groups = create_groups()
+        db.session.add_all(groups)
+        db.session.commit()
+
         print("Seeding user_groups...")
         print("Seeding posts...")
         print("Seeding comments...")

@@ -2,6 +2,7 @@
 
 from config import app
 from routes.user_routes import users
+from routes.group_routes import groups
 
 # Main Server View:
 @app.route('/')
