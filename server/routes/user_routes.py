@@ -12,3 +12,13 @@ def users():
         200
     )
     return response
+
+@app.route('/users/<int:id>', methods = ['GET'])
+def user_by_id(id):
+    user = User.query.filter(User.id == id).first()
+    
+    response = make_response(
+        user.to_dict(),
+        200
+    )
+    return response

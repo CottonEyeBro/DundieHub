@@ -12,3 +12,13 @@ def posts():
         200
     )
     return response
+
+@app.route('/posts/<int:id>', methods = ['GET'])
+def post_by_id(id):
+    post = Post.query.filter(Post.id == id).first()
+    
+    response = make_response(
+        post.to_dict(),
+        200
+    )
+    return response

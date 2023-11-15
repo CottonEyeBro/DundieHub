@@ -12,3 +12,13 @@ def groups():
         200
     )
     return response
+
+@app.route('/groups/<int:id>', methods = ['GET'])
+def group_by_id(id):
+    group = Group.query.filter(Group.id == id).first()
+    
+    response = make_response(
+        group.to_dict(),
+        200
+    )
+    return response

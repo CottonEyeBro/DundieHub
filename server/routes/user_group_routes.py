@@ -12,3 +12,13 @@ def user_groups():
         200
     )
     return response
+
+@app.route('/user_groups/<int:id>', methods = ['GET'])
+def user_group_by_id(id):
+    user_group = User_Group.query.filter(User_Group.join_table_id == id).first()
+    
+    response = make_response(
+        user_group.to_dict(),
+        200
+    )
+    return response

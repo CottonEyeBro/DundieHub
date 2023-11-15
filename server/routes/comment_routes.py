@@ -12,3 +12,13 @@ def comments():
         200
     )
     return response
+
+@app.route('/comments/<int:id>', methods = ['GET'])
+def comment_by_id(id):
+    comment = Comment.query.filter(Comment.id == id).first()
+    
+    response = make_response(
+        comment.to_dict(),
+        200
+    )
+    return response
