@@ -39,12 +39,52 @@ def user_groups():
 
     return response
 
-@app.route('/user_groups/<int:id>', methods = ['GET'])
+@app.route('/user_groups/<int:id>', methods = ['GET', 'PATCH', 'DELETE'])
 def user_group_by_id(id):
     user_group = User_Group.query.filter(User_Group.join_table_id == id).first()
+
+    if user_group:
+        if request.method == 'GET':
     
-    response = make_response(
-        user_group.to_dict(),
-        200
-    )
+            response = make_response(
+                user_group.to_dict(),
+                200
+            )
+
+        elif request.method == 'PATCH':
+            form_data = request.get_json()
+
+            try:
+                for attr in form_data:
+                    setattr(user_group, attr, form_data.get(attr))
+                
+                db.session.commit()
+
+                response = make_response(
+                    user_group.to_dict(),
+                    202
+                )
+
+            except ValueError:
+                response = make_response(
+                    {"errors": ["validation errors in PATCH to user_groups id"]},
+                    400
+                )
+                return response
+            
+        elif request.method == 'DELETE':
+            db.session.delete(user_group)
+            db.session.commit()
+
+            response = make_response(
+                {},
+                204
+            )
+        
+    else:
+        response = make_response(
+            {"error": "User_group not found"},
+            404
+        )
+
     return response
