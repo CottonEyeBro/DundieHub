@@ -2,7 +2,7 @@ from flask import Flask, make_response, request
 from models import db, User, User_Group, Group, Post, Comment
 from config import app
 
-@app.route('/comments', methods = ['GET'])
+@app.route('/comments', methods = ['GET', 'POST'])
 def comments():
 
     if request.method == 'GET':
