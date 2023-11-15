@@ -40,6 +40,48 @@ def create_groups():
     )
     groups = [g1, g2]
     return groups
+
+def create_join_table():
+    ug1 = User_Group(
+        user_id = '1',
+        group_id = '1'
+    )
+    ug2 = User_Group(
+        user_id = '2',
+        group_id = '2'
+    )
+    user_groups = [ug1, ug2]
+    return user_groups
+
+def create_posts():
+    p1 = Post(
+        content = "I love inside jokes. I'd love to be a part of one someday.",
+        posted_at = datetime.datetime(month = 5, day = 12, year = 2023, hour = 6, minute = 21, second = 0, microsecond = 0, fold = 0),
+        user_id = 1
+    )
+    p2 = Post(
+        content = "I am fast. To give you a reference point, I'm somewhere between a snake and a mongoose… and a panther.",
+        posted_at = datetime.datetime(month = 6, day = 19, year = 2023, hour = 3, minute = 15, second = 0, microsecond = 0, fold = 0),
+        user_id = 2
+    )
+    posts = [p1, p2]
+    return posts
+
+def create_comments():
+    c1 = Comment(
+        content = "Dwight, you ignorant slut!",
+        commented_at = datetime.datetime(month = 5, day = 12, year = 2023, hour = 6, minute = 21, second = 0, microsecond = 0, fold = 0),
+        post_id = 2,
+        user_id = 1
+    )
+    c2 = Comment(
+        content = "Michael is like Mozart, and I'm like Butch Cassidy. You mess with Mozart and you're gonna get a bullet in your head, courtesy of Butch Cassidy.",
+        commented_at = datetime.datetime(month = 6, day = 19, year = 2023, hour = 3, minute = 15, second = 0, microsecond = 0, fold = 0),
+        post_id = 1,
+        user_id = 2
+    )
+    comments = [c1, c2]
+    return comments
     
 
 if __name__ == '__main__':
@@ -62,8 +104,19 @@ if __name__ == '__main__':
         db.session.commit()
 
         print("Seeding user_groups...")
+        user_groups = create_join_table()
+        db.session.add_all(user_groups)
+        db.session.commit()
+
         print("Seeding posts...")
+        posts = create_posts()
+        db.session.add_all(posts)
+        db.session.commit()
+
         print("Seeding comments...")
+        comments = create_comments()
+        db.session.add_all(comments)
+        db.session.commit()
 
         print("Done seeding!... That's what she said!")
 
