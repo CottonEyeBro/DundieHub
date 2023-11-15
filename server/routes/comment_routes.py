@@ -41,12 +41,52 @@ def comments():
         
     return response
 
-@app.route('/comments/<int:id>', methods = ['GET'])
+@app.route('/comments/<int:id>', methods = ['GET', 'PATCH', 'DELETE'])
 def comment_by_id(id):
     comment = Comment.query.filter(Comment.id == id).first()
+
+    if comment:
+        if request.method == 'GET':
     
-    response = make_response(
-        comment.to_dict(),
-        200
-    )
+            response = make_response(
+                comment.to_dict(),
+                200
+            )
+
+        elif request.method == 'PATCH':
+            form_data = request.get_json()
+
+            try:
+                for attr in form_data:
+                    setattr(comment, attr, form_data.get(attr))
+                
+                db.session.commit()
+
+                response = make_response(
+                    comment.to_dict(),
+                    202
+                )
+
+            except ValueError:
+                response = make_response(
+                    {"errors": ["validation errors in PATCH to comments id"]},
+                    400
+                )
+                return response
+            
+        elif request.method == 'DELETE':
+            db.session.delete(comment)
+            db.session.commit()
+
+            response = make_response(
+                {},
+                204
+            )
+        
+    else:
+        response = make_response(
+            {"error": "Comment not found"},
+            404
+        )
+
     return response
