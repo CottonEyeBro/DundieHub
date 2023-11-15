@@ -41,6 +41,18 @@ def create_groups():
     groups = [g1, g2]
     return groups
 
+def create_join_table():
+    ug1 = User_Group(
+        user_id = '1',
+        group_id = '1'
+    )
+    ug2 = User_Group(
+        user_id = '2',
+        group_id = '2'
+    )
+    user_groups = [ug1, ug2]
+    return user_groups
+
 def create_posts():
     p1 = Post(
         content = "I love inside jokes. I'd love to be a part of one someday.",
@@ -92,6 +104,10 @@ if __name__ == '__main__':
         db.session.commit()
 
         print("Seeding user_groups...")
+        user_groups = create_join_table()
+        db.session.add_all(user_groups)
+        db.session.commit()
+
         print("Seeding posts...")
         posts = create_posts()
         db.session.add_all(posts)
