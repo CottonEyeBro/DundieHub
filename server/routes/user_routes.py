@@ -41,12 +41,52 @@ def users():
 
     return response
 
-@app.route('/users/<int:id>', methods = ['GET'])
+@app.route('/users/<int:id>', methods = ['GET', 'PATCH', 'DELETE'])
 def user_by_id(id):
     user = User.query.filter(User.id == id).first()
+
+    if user:
+        if request.method == 'GET':
     
-    response = make_response(
-        user.to_dict(),
-        200
-    )
+            response = make_response(
+                user.to_dict(),
+                200
+            )
+
+        elif request.method == 'PATCH':
+            form_data = request.get_json()
+
+            try:
+                for attr in form_data:
+                    setattr(user, attr, form_data.get(attr))
+                
+                db.session.commit()
+
+                response = make_response(
+                    user.to_dict(),
+                    202
+                )
+
+            except ValueError:
+                response = make_response(
+                    {"errors": ["validation errors in PATCH to users id"]},
+                    400
+                )
+                return response
+            
+        elif request.method == 'DELETE':
+            db.session.delete(user)
+            db.session.commit()
+
+            response = make_response(
+                {},
+                204
+            )
+        
+    else:
+        response = make_response(
+            {"error": "User not found"},
+            404
+        )
+
     return response
