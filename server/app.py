@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 from config import app
-from routes.user_routes import users
-from routes.user_group_routes import user_groups
-from routes.group_routes import groups
-from routes.post_routes import posts
-from routes.comment_routes import comments
+from routes.user_routes import users, user_by_id
+from routes.user_group_routes import user_groups, user_group_by_id
+from routes.group_routes import groups, group_by_id
+from routes.post_routes import posts, post_by_id
+from routes.comment_routes import comments, comment_by_id
 
 # Main Server View:
 @app.route('/')
