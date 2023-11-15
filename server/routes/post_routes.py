@@ -40,12 +40,52 @@ def posts():
         
     return response
 
-@app.route('/posts/<int:id>', methods = ['GET'])
+@app.route('/posts/<int:id>', methods = ['GET', 'PATCH', 'DELETE'])
 def post_by_id(id):
     post = Post.query.filter(Post.id == id).first()
+
+    if post:
+        if request.method == 'GET':
     
-    response = make_response(
-        post.to_dict(),
-        200
-    )
+            response = make_response(
+                post.to_dict(),
+                200
+            )
+
+        elif request.method == 'PATCH':
+            form_data = request.get_json()
+
+            try:
+                for attr in form_data:
+                    setattr(post, attr, form_data.get(attr))
+                
+                db.session.commit()
+
+                response = make_response(
+                    post.to_dict(),
+                    202
+                )
+
+            except ValueError:
+                response = make_response(
+                    {"errors": ["validation errors in PATCH to posts id"]},
+                    400
+                )
+                return response
+            
+        elif request.method == 'DELETE':
+            db.session.delete(post)
+            db.session.commit()
+
+            response = make_response(
+                {},
+                204
+            )
+        
+    else:
+        response = make_response(
+            {"error": "Post not found"},
+            404
+        )
+
     return response
