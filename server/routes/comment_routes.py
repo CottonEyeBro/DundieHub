@@ -4,13 +4,41 @@ from config import app
 
 @app.route('/comments', methods = ['GET'])
 def comments():
-    comments = Comment.query.all()
-    comment_dict = [comment.to_dict() for comment in comments]
 
-    response = make_response(
-        comment_dict,
-        200
-    )
+    if request.method == 'GET':
+        comments = Comment.query.all()
+        comment_dict = [comment.to_dict() for comment in comments]
+
+        response = make_response(
+            comment_dict,
+            200
+        )
+
+    elif request.method == 'POST':
+        form_data = request.get_json()
+
+        try:
+            new_comment_obj = Comment(
+                user_id = form_data['user_id'],
+                post_id = form_data['post_id'],
+                content = form_data['content'],
+                commented_at = form_data['commented_at']
+            )
+
+            db.session.add(new_comment_obj)
+            db.session.commit()
+
+            response = make_response(
+                new_comment_obj.to_dict(),
+                201
+            )
+        except ValueError:
+            response = make_response(
+                {"errors": ["validation errors in POST to comments"]},
+                400
+            )
+            return response
+        
     return response
 
 @app.route('/comments/<int:id>', methods = ['GET'])
