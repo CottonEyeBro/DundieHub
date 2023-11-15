@@ -17,7 +17,7 @@ class User(db.Model, SerializerMixin): # =======================================
     __tablename__ = 'users'
 
     # Serialize Rules
-
+    serialize_rules = ('-user_groups.user', '-user_groups.group', '-posts.user', '-comments.user', '-comments.post', '-posts.comments')
 
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)
@@ -29,7 +29,12 @@ class User(db.Model, SerializerMixin): # =======================================
 
 
     # Relationships
+    user_groups = db.relationship('User_Group', back_populates = 'user')
+    posts = db.relationship('Post', back_populates = 'user')
+    comments = db.relationship('Comment', back_populates = 'user')
 
+    # Association Proxy
+    # groups = association_proxy('user_groups', 'groups')
 
     # Validations
     @validates('name')
@@ -64,7 +69,7 @@ class User_Group(db.Model, SerializerMixin): # =================================
     __tablename__ = 'user_groups'
 
     # Serialize Rules
-
+    serialize_rules = ('-user.user_groups', '-group.user_groups', '-user.comments', '-user.posts')
 
     # Build Table Columns
     join_table_id = db.Column(db.Integer, primary_key = True)
@@ -72,7 +77,8 @@ class User_Group(db.Model, SerializerMixin): # =================================
     group_id = db.Column(db.Integer, db.ForeignKey('groups.id'))
 
     # Relationships
-
+    user = db.relationship('User', back_populates = 'user_groups')
+    group = db.relationship('Group', back_populates = 'user_groups')
 
     # __repr__
     def __repr__(self):
@@ -85,7 +91,7 @@ class Group(db.Model, SerializerMixin): # ======================================
     __tablename__ = 'groups'
 
     # Serialize Rules
-
+    serialize_rules = ('-user_groups.group', '-user_groups.user')
 
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)
@@ -94,7 +100,10 @@ class Group(db.Model, SerializerMixin): # ======================================
     group_started = db.Column(db.String)
 
     # Relationships
+    user_groups = db.relationship('User_Group', back_populates = 'group')
 
+    # Association Proxy
+    # users = association_proxy('user_groups', 'users')
 
     # Validations
     @validates('group_name')
@@ -122,7 +131,7 @@ class Post(db.Model, SerializerMixin): # =======================================
     __tablename__ = 'posts'
 
     # Serialize Rules
-
+    serialize_rules = ('-user.posts', '-comments.post', '-user.user_groups', '-comments.user', '-user.comments')
 
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)
@@ -132,7 +141,8 @@ class Post(db.Model, SerializerMixin): # =======================================
     # img_content = db.Column() -------------------------> Stretch goal
 
     # Relationships
-
+    user = db.relationship('User', back_populates = 'posts')
+    comments = db.relationship('Comment', back_populates = 'post')
 
     # Validations
     @validates('content')
@@ -153,7 +163,7 @@ class Comment(db.Model, SerializerMixin): # ====================================
     __tablename__ = 'comments'
 
     # Serialize Rules
-
+    serialize_rules = ('-user.comments', '-post.comments', '-user.user_groups', '-post.user', '-user.posts')
 
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)
@@ -164,7 +174,8 @@ class Comment(db.Model, SerializerMixin): # ====================================
     # img_content = db.Column() -------------------------> Stretch goal 
 
     # Relationships
-
+    user = db.relationship('User', back_populates = 'comments')
+    post = db.relationship('Post', back_populates = 'comments')
 
     # Validations
     @validates('content')
