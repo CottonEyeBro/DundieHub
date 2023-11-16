@@ -4,7 +4,9 @@ function Feed() {
 
 
     return (
-        <></>
+        <>
+            <h1>Main Feed Page</h1>
+        </>
     );
 }
 

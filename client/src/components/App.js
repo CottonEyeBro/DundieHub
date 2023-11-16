@@ -14,7 +14,18 @@ function App() {
   return (
     <>
       <h1>Project Client</h1>
-      <Header />
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+        </Switch>
+        <br></br>
+        <br></br>
+        <br></br>
+        <Footer />
+      </div>
     </>
   );
 }
