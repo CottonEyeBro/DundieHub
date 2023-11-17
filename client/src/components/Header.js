@@ -5,12 +5,12 @@ function Header() {
 
     return (
         <>  
-            <div class="header">
+            <div className="header">
                 <p>Welcome to DundieHub!</p>
-                <a><NavLink to="/">Home</NavLink></a>
+                <NavLink to="/">Home</NavLink>
             </div>
             <div className = "topnav">
-                <a><NavLink to="/login">Sign in/Sign up</NavLink></a>
+                <NavLink to="/login">Sign in/Sign up</NavLink>
             </div>
         </>
     )
