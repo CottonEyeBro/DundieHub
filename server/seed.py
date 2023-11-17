@@ -97,27 +97,27 @@ def create_groups():
     )
     g3 = Group(
         group_name = 'Office Romantics',
-        group_desc = 'The only things that matter, objectively',
+        group_desc = 'Reserved for all those who have caught the lovebug in the office',
         group_started = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 14, second = 0, microsecond = 0, fold = 0)
     )
     g4 = Group(
         group_name = 'Accounting 4 Life',
-        group_desc = 'The only things that matter, objectively',
+        group_desc = 'The Accounting Department',
         group_started = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 15, second = 0, microsecond = 0, fold = 0)
     )
     g5 = Group(
         group_name = 'Assistant(s) to the Regional Manager',
-        group_desc = 'The only things that matter, objectively',
+        group_desc = 'We are in charge (unless Michael says differently)',
         group_started = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 16, second = 0, microsecond = 0, fold = 0)
     )
     g6 = Group(
         group_name = 'Harcore Parkour Club',
-        group_desc = 'The only things that matter, objectively',
+        group_desc = 'PARKOUR!',
         group_started = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 17, second = 0, microsecond = 0, fold = 0)
     )
     g7 = Group(
         group_name = '(former) Michael Scott Paper Company Employees',
-        group_desc = 'The only things that matter, objectively',
+        group_desc = 'I will not beat. I will never give up. I am on a mission. That is the Michael Scott [Paper Company] guarantee.',
         group_started = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 18, second = 0, microsecond = 0, fold = 0)
     )
     g8 = Group(
