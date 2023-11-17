@@ -14,9 +14,8 @@ open a Terminal and type the following in order:
 # Running the Server
 1. $ pipenv install && pipenv shell --- this command is to create the virtual environment
 2. $ cd server
-3. $ export FLASK_APP=app.py
-4. $ python app.py --- to get the program started once in the shell environment
-5. Open a second terminal and cd out of server into the DundieHub directory
+3. $ python app.py --- to get the program started once in the shell environment
+4. Open a second terminal and cd out of server into the DundieHub directory
 
 # Running the Client
 1. $ cd client
