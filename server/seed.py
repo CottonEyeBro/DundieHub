@@ -2,6 +2,7 @@
 
 # Remote library imports
 import datetime
+from config import db, bcrypt
 
 # Local imports
 from app import app
@@ -12,75 +13,76 @@ def create_users():
     u1 = User(
         name = 'Michael Scott',
         username = 'agentmichaelscarn',
-        password = 'iluvpaper1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 0, second = 0, microsecond = 0, fold = 0)
     )
+    u1.password_hash = 'iluvpaper1234'
     u2 = User(
         name = 'Dwight Schrute',
         username = 'schrutefarmsbnb',
-        password = 'iluvmichael1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 1, second = 0, microsecond = 0, fold = 0)
     )
+    u2.password_hash = 'iluvmichael1234'
     u3 = User(
         name = 'Jim Halpert',
         username = 'bigtuna',
-        password = 'iluvpam1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 2, second = 0, microsecond = 0, fold = 0)
     )
+    u3.password_hash = 'iluvpam1234'
     u4 = User(
         name = 'Pam Beesly',
         username = 'whitestsneakers',
-        password = 'iluvjim1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 3, second = 0, microsecond = 0, fold = 0)
     )
+    u4.password_hash = 'iluvjim1234'
     u5 = User(
         name = 'Creed Bratton',
         username = 'irontothefire',
-        password = 'iamthescrantonstrangler',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 4, second = 0, microsecond = 0, fold = 0)
     )
+    u5.password_hash = 'iamthescrantonstrangler'
     u6 = User(
         name = 'Stanley Hudson',
         username = 'iamtoooldforthis',
-        password = 'iluvpretzelday1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 5, second = 0, microsecond = 0, fold = 0)
     )
+    u6.password_hash = 'iluvpretzelday1234'
     u7 = User(
         name = 'Andy Bernard',
         username = 'herecomestreble',
-        password = 'iluvcornell1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 6, second = 0, microsecond = 0, fold = 0)
     )
+    u7.password_hash = 'iluvcornell1234'
     u8 = User(
         name = 'Angela Martin',
         username = 'kittymom452',
-        password = 'iluvmycats1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 7, second = 0, microsecond = 0, fold = 0)
     )
+    u8.password_hash = 'iluvmycats1234'
     u9 = User(
         name = 'Kevin Malone',
         username = 'scrantonicity2',
-        password = 'iluvchili1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 8, second = 0, microsecond = 0, fold = 0)
     )
+    u9.password_hash = 'iluvchili1234'
     u10 = User(
         name = 'Ryan Howard',
         username = 'iamthetemp',
-        password = 'iluvmoney1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 9, second = 0, microsecond = 0, fold = 0)
     )
+    u10.password_hash = 'iluvmoney1234'
     u11 = User(
         name = 'Oscar Martinez',
         username = 'bacchusgodofwine',
-        password = 'iluvaccounting1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 10, second = 0, microsecond = 0, fold = 0)
     )
+    u11.password_hash = 'iluvaccounting1234'
     u12 = User(
         name = 'Kelly Kapoor',
         username = 'ryanloverxoxo',
-        password = 'iluvryan1234',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 11, second = 0, microsecond = 0, fold = 0)
     )
+    u12.password_hash = 'iluvryan1234'
+    
     users = [u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, u11, u12]
     return users
 

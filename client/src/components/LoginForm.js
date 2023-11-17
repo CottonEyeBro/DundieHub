@@ -9,11 +9,12 @@ const LoginForm = ({ users }) => {
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required('Required'),
-    password: Yup.string().required('Required'),
+    username: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid username').required('Required'),
+    password: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid password').required('Required'),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {
+    
     try {
       // Send login request to your backend
       const response = await fetch('/user_login', {
@@ -27,6 +28,7 @@ const LoginForm = ({ users }) => {
       if (response.ok) {
         const user = await response.json();
         users(user);
+        
       } else {
         const error = await response.json();
         console.error('Login failed:', error);
@@ -39,6 +41,7 @@ const LoginForm = ({ users }) => {
   };
 
   return (
+
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}

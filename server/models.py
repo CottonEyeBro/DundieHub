@@ -1,9 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
-from config import db
+from config import db, bcrypt
 
 class User(db.Model, SerializerMixin): # ====================================================================================================================
     __tablename__ = 'users'
@@ -15,7 +16,7 @@ class User(db.Model, SerializerMixin): # =======================================
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
     username = db.Column(db.String, unique = True)
-    password = db.Column(db.String)
+    _password_hash = db.Column(db.String)
     joined_on = db.Column(db.String)
     # profile_photo = db.Column() -------------------------> Stretch goal
 
@@ -25,8 +26,22 @@ class User(db.Model, SerializerMixin): # =======================================
     posts = db.relationship('Post', back_populates = 'user')
     comments = db.relationship('Comment', back_populates = 'user')
 
-    # Association Proxy
-    # groups = association_proxy('user_groups', 'groups')
+    # Password Hashing + Authenticate
+    @hybrid_property
+    def password_hash(self):
+        # ensures user does not have access to password
+        raise AttributeError("You don't have permission to view the password!")
+    
+    @password_hash.setter
+    def password_hash(self, password):
+        # generates hashed version of password
+        new_hashed_password = bcrypt.generate_password_hash(password.encode('utf-8'))
+
+        self._password_hash = new_hashed_password.decode('utf-8')
+
+    def authenticate(self, password):
+        # check if inputted password matches user's password
+        return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
     # Validations
     @validates('name')
