@@ -16,6 +16,40 @@ def index():
     return '<h1>Cooper Lindsley Capstone Project Server</h1>'
 
 # Non-RESTful Routing:
+@app.route('/signup', methods = ['POST'])
+def signup():
+    # allow for user to signup new account
+    form_data = request.get_json()
+
+    username = form_data['username']
+    password = form_data['password']
+
+    try:
+        new_user = User(
+            username = username
+        )
+        # generates hashed password
+        new_user.password_hash = password
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        # gives new user an id and sets signed in user to session
+        session['user_id'] = new_user.id
+
+        response = make_response(
+            new_user.to_dict(),
+            201
+        )
+
+    except:
+        response = make_response(
+            {"ERROR": "Could not create user!"},
+            400
+        )
+
+    return response
+
 @app.route('/check_user_session', methods = ['GET'])
 def check_session():
     # check current session
@@ -47,6 +81,16 @@ def user_login():
     else:
         resp = make_response({"ERROR" : "USER NOT FOUND"}, 404)
     return resp
+
+@app.route('/logout', methods = ['DELETE'])
+def logout():
+    # remove session
+    session['user_id'] = None
+
+    response = make_response(
+        {},
+        204
+    )
 
 # Run python app.py
 if __name__ == '__main__':

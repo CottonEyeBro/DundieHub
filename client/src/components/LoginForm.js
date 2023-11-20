@@ -1,4 +1,6 @@
 import React from 'react';
+import Feed from './Feed';
+import { NavLink } from 'react-router-dom/cjs/react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -62,7 +64,6 @@ const LoginForm = ({ users }) => {
         </div>
         <br/>
         <div>
-       
           <button type="submit">Login</button>
         </div>
       </Form>
