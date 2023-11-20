@@ -1,5 +1,4 @@
 import React from 'react';
-import Feed from './Feed';
 import { useHistory } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -42,6 +41,12 @@ const LoginForm = ({ users }) => {
     setSubmitting(false);
   };
 
+  let history = useHistory();
+
+  function handleClick() {
+    history.push("/feed");
+  }
+
   return (
 
     <Formik
@@ -64,7 +69,7 @@ const LoginForm = ({ users }) => {
         </div>
         <br/>
         <div>
-          <button type="submit">Login</button>
+          <button type="submit" onClick={handleClick}>Login</button>
         </div>
       </Form>
     </Formik>
