@@ -9,11 +9,10 @@ import { Switch, Route } from "react-router-dom";
 
 function App() {
 
-  const [usersArr, setUsersArr] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [loggedInID, setLoggedInID] = useState(1);
 
-  
+
 
   return (
     <>
@@ -23,6 +22,15 @@ function App() {
         <Switch>
           <Route exact path="/login">
             <Login />
+          </Route>
+          <Route exact path="/feed">
+            <Feed />
+          </Route>
+          <Route exact path="/user-profile">
+            <UserProfile />
+          </Route>
+          <Route exact path="/group-profile">
+            <GroupProfile />
           </Route>
         </Switch>
         <br></br>

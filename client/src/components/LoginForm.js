@@ -1,6 +1,6 @@
 import React from 'react';
 import Feed from './Feed';
-import { NavLink } from 'react-router-dom/cjs/react-router-dom';
+import { useHistory } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 

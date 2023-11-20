@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
-import { Link } from "react-router-dom";
-
 
 function Login() {
 
@@ -14,7 +12,7 @@ function Login() {
             .then((data) => setUsers(data))
     }, []);
 
-    console.log(users)
+    // console.log(users)
 
     return (
         <div className="login_page">
