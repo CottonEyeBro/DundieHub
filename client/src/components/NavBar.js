@@ -1,13 +1,13 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 
-function Header() {
+function NavBar() {
 
     return (
-        <>  
+        <div className="main-header">  
             <div className="header">
+            <NavLink className="logo" to="/"><h1>DundieHub</h1></NavLink>
                 <p>Welcome to DundieHub!</p>
-                <NavLink to="/">Home</NavLink>
             </div>
             <div className = "login">
                 <NavLink to="/login">Sign in/Sign up</NavLink>
@@ -21,8 +21,8 @@ function Header() {
             <div className="group-profile">
                 <NavLink to="/group-profile">Group Profile</NavLink>
             </div>
-        </>
+        </div>
     )
 }
 
-export default Header
+export default NavBar;

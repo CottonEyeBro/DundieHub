@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
+import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Login from "./Login";
 import Feed from "./Feed";
@@ -16,9 +16,8 @@ function App() {
 
   return (
     <>
-      <h1>DundieHub</h1>
       <div className="App">
-        <Header />
+        <NavBar />
         <Switch>
           <Route exact path="/login">
             <Login />
@@ -36,7 +35,7 @@ function App() {
         <br></br>
         <br></br>
         <br></br>
-        <Footer />
+        <Footer className="footer" />
       </div>
     </>
   );

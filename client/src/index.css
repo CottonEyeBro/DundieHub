@@ -1,7 +1,37 @@
-:root {
-  --bg: #282c34;
-  --header: #fff;
-  --link: #61dafb;
-  --text: hsla(0, 0%, 100%, 0.88);
+.main-header {
+  width: 100%;
+  padding: 20px;
+  top: 0;
+  background-color: #282C2F;
+  color: white;
 }
 
+.main-header a:link {
+  color: rgb(0, 183, 255);
+}
+
+.main-header a:visited {
+  color: rgb(228, 86, 197);
+}
+
+
+footer {
+  width: 200%;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  background-color: #282C2F;
+  color: white;
+}
+
+footer a:link {
+  color: rgb(0, 183, 255);
+}
+
+footer a:visited {
+  color: rgb(228, 86, 197);
+}
+
+.about p {
+  color: grey;
+}
