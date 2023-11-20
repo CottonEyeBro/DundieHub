@@ -9,11 +9,6 @@ import { Switch, Route } from "react-router-dom";
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [loggedInID, setLoggedInID] = useState(1);
-
-
-
   return (
     <>
       <div className="App">

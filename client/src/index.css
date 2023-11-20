@@ -14,11 +14,25 @@
   color: rgb(228, 86, 197);
 }
 
+.postcontentbox {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 16px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.comment {
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-left: 15px;
+}
 
 footer {
   width: 200%;
   padding: 20px;
-  position: fixed;
   bottom: 0;
   background-color: #282C2F;
   color: white;
