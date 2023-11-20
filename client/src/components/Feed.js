@@ -55,6 +55,8 @@ function Feed() {
                             <h3>Comments:</h3>
                             {sortedComments.map((comment) => (
                                 <div key={comment.id} className="comment">
+                                    <h4>{comment.user.name}</h4>
+                                    <h5>&lt;{comment.user.username}&gt;</h5>
                                     <p>{comment.content}</p>
                                     <p><em>{comment.commented_at}</em></p>
                                 </div>
@@ -72,7 +74,7 @@ function Feed() {
 
     return (
         <div className="main-feed">
-            <h1>Main Feed Page</h1>
+            <h1>Posts</h1>
             <div className="card">
                 {viewPosts()}
             </div>

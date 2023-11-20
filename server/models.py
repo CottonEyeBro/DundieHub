@@ -138,7 +138,8 @@ class Post(db.Model, SerializerMixin): # =======================================
     __tablename__ = 'posts'
 
     # Serialize Rules
-    serialize_rules = ('-user.posts', '-comments.post', '-user.user_groups', '-comments.user', '-user.comments')
+    serialize_rules = ('-user.posts', '-comments.post', '-user.user_groups', '-user.comments')
+    #  '-comments.user', ===> Removed to view user info within comments arrays
 
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 .main-header {
   width: 100%;
   padding: 20px;
@@ -6,15 +8,27 @@
   color: white;
 }
 
-.main-header a:link {
+.navbar a:link {
   color: rgb(0, 183, 255);
 }
 
-.main-header a:visited {
+.navbar a:visited {
   color: rgb(228, 86, 197);
 }
 
+.logo {
+  font-family: 'Anton';
+  color: white;
+  font-size: 4rem;
+  text-decoration: none;
+}
+
+.logo:visited {
+  color: white;
+}
+
 .postcontentbox {
+  background-color: #282c2f73;
   border: 1px solid #ccc;
   padding: 15px;
   border-radius: 16px;
@@ -23,6 +37,7 @@
 }
 
 .comment {
+  background-color: beige;
   border: 1px solid #ccc;
   border-radius: 16px;
   margin-top: 15px;
