@@ -21,6 +21,10 @@
   color: white;
   font-size: 4rem;
   text-decoration: none;
+  border: 5px solid white;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 16px;
 }
 
 .logo:visited {
@@ -46,7 +50,8 @@
 }
 
 footer {
-  width: 200%;
+  position: fixed;
+  width: 100%;
   padding: 20px;
   bottom: 0;
   background-color: #282C2F;
