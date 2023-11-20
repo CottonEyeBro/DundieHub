@@ -30,6 +30,9 @@ const LoginForm = ({ users }) => {
         const user = await response.json();
         users(user);
         
+        // Redirect to "/feed" on successful login
+        // history.push("/feed");
+
       } else {
         const error = await response.json();
         console.error('Login failed:', error);
@@ -70,7 +73,7 @@ const LoginForm = ({ users }) => {
         </div>
         <br/>
         <div>
-          <button type="submit" onClick={handleClick}>Login</button>
+          <button type="submit" onClick={handleClick}>Sign In</button>
         </div>
       </Form>
     </Formik>

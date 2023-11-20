@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
-function Login() {
+function Login( {onLogin} ) {
 
-    const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        fetch('/users')
-            .then((response) => response.json())
-            .then((data) => setUsers(data))
-    }, []);
-
-    // console.log(users)
+    const [showLogin, setShowLogin] = useState(true);
 
     return (
         <div className="login_page">
-            <h1>Login Page</h1>
-            <LoginForm users={users} />
-            <SignUpForm />
+            {showLogin ? (
+                <>
+                    <LoginForm onLogin={onLogin} />
+                    <p>
+                        Don't have an account? &nbsp;
+                        <button onClick={() => setShowLogin(false)}>Create account</button>
+                    </p>
+                </>
+            ) : (
+                <>
+                    <SignUpForm onLogin={onLogin} />
+                    <p>
+                        Already have an account? &nbsp;
+                        <button onClick={() => setShowLogin(true)}>Log in</button>
+                    </p>
+                </>
+            )}
         </div>
     );
 }

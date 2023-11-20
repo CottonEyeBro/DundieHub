@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-function Feed() {
+function Feed( {users} ) {
 
-    const [users, setUsers] = useState([])
+
     const [posts, setPosts] = useState([])
     const [comments, setComments] = useState([])
     const [groups, setGroups] = useState([])
     const [userGroups, setUserGroups] = useState([])
-
-    useEffect(() => {
-        fetch("/users")
-            .then((resp) => resp.json())
-            .then((data) => setUsers(data))
-    }, [])
 
     useEffect(() => {
         fetch("/posts")
