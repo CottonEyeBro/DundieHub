@@ -14,7 +14,7 @@ from routes.comment_routes import comments, comment_by_id
 # Main Server View:
 @app.route('/')
 def index():
-    return '<h1>Cooper Lindsley Capstone Project Server</h1>'
+    return '<h1>Welcome to the DundieHub Server!</h1>'
 
 # Non-RESTful Routing:
 @app.route('/signup', methods = ['POST'])
@@ -62,12 +62,18 @@ def signup():
 def check_session():
     # check current session
     user_id = session['user_id']
-    user = User.query.filter(user.id == user_id).first()
+    user = User.query.filter(User.id == user_id).first()
     if user:
-        resp = make_response(user.to_dict(), 200)
+        response = make_response(
+            user.to_dict(), 
+            200
+        )
     else:
-        resp = make_response({}, 404)
-    return resp
+        response = make_response(
+            {}, 
+            404
+        )
+    return response
 
 @app.route('/user_login', methods = ['POST'])
 def user_login():
@@ -99,6 +105,8 @@ def logout():
         {},
         204
     )
+
+    return response
 
 # Run python app.py
 if __name__ == '__main__':

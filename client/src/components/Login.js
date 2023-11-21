@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
-function Login( {onLogin} ) {
+function Login( {setUsers} ) {
 
     const [showLogin, setShowLogin] = useState(true);
+    console.log(setUsers)
 
     return (
         <div className="login_page">
             {showLogin ? (
                 <>
-                    <LoginForm onLogin={onLogin} />
+                    <LoginForm setUsers={setUsers} />
                     <p>
                         Don't have an account? &nbsp;
                         <button onClick={() => setShowLogin(false)}>Create account</button>
@@ -18,7 +19,7 @@ function Login( {onLogin} ) {
                 </>
             ) : (
                 <>
-                    <SignUpForm onLogin={onLogin} />
+                    <SignUpForm setUsers={setUsers} />
                     <p>
                         Already have an account? &nbsp;
                         <button onClick={() => setShowLogin(true)}>Log in</button>

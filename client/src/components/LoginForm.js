@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const LoginForm = ({ users }) => {
+const LoginForm = ({ setUsers }) => {
   const initialValues = {
     username: '',
     password: '',
@@ -28,7 +28,9 @@ const LoginForm = ({ users }) => {
 
       if (response.ok) {
         const user = await response.json();
-        users(user);
+        // console.log(users);
+        // console.log(user);
+        setUsers(user);
         
         // Redirect to "/feed" on successful login
         // history.push("/feed");

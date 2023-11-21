@@ -10,6 +10,7 @@ import { Switch, Route } from "react-router-dom";
 function App() {
 
   const [users, setUsers] = useState(null)
+  // console.log(setUsers)
 
   useEffect(() => {
       fetch("/users")
@@ -26,12 +27,12 @@ function App() {
     });
   }, []);
 
-  if (!users) return <Login onLogin={setUsers} />;
+  if (!users) return <Login setUsers={setUsers} />;
 
   return (
     <>
       <div className="App">
-        <NavBar user={users} setUser={setUsers} />
+        <NavBar users={users} setUsers={setUsers} />
         <Switch>
           <Route exact path="/login">
             <Login />

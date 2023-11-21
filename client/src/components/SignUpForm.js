@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const SignUpForm = ({ users }) => {
+const SignUpForm = ({ setUsers }) => {
   const initialValues = {
     name: '',
     username: '',
@@ -35,7 +35,7 @@ const SignUpForm = ({ users }) => {
 
       if (response.ok) {
         const user = await response.json();
-        users(user);
+        setUsers(user);
 
         // Redirect to "/feed" on successful signup
         // history.push('/feed');

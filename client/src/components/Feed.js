@@ -34,7 +34,7 @@ function Feed( {users} ) {
 
     function viewPosts() {
         const postCards = posts.map((post) => {
-            console.log(post)
+            // console.log(post)
             // Sort comments by the 'commented_at' timestamp in ascending order
             const sortedComments = post.comments.sort((a, b) => new Date(a.commented_at) - new Date(b.commented_at));
             return (
