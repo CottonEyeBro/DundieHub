@@ -75,7 +75,7 @@ function Feed() {
 
                 <div key={post.id} className="post-card">
                     <div className="postcontentbox">
-                        <img src={post.user.profile_image_url} alt="Profile photo" />
+                        <img src={post.user.profile_image_url} alt="User profile portrait" />
                         <h2>{post.user.name}</h2>
                         <h3><em>&lt;{post.user.username}&gt;</em></h3>
                         <p>{post.content}</p>
