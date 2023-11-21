@@ -66,7 +66,7 @@ function Feed() {
 
     function viewPosts() {
         const postCards = posts.map((post) => {
-            // console.log(post)
+            console.log(post.user.profile_image_url)
 
             // Sort comments by the 'commented_at' timestamp in ascending order
             const sortedComments = post.comments.sort((a, b) => new Date(a.commented_at) - new Date(b.commented_at));
@@ -75,6 +75,7 @@ function Feed() {
 
                 <div key={post.id} className="post-card">
                     <div className="postcontentbox">
+                        <img src={post.user.profile_image_url} alt="Profile photo" />
                         <h2>{post.user.name}</h2>
                         <h3><em>&lt;{post.user.username}&gt;</em></h3>
                         <p>{post.content}</p>

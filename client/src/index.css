@@ -40,6 +40,11 @@
   margin-bottom: 15px;
 }
 
+.postcontentbox img {
+  width: 120px;
+  height: 120px;
+}
+
 .comment {
   background-color: beige;
   border: 1px solid #ccc;
@@ -50,7 +55,6 @@
 }
 
 footer {
-  position: fixed;
   width: 100%;
   padding: 20px;
   bottom: 0;
