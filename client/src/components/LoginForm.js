@@ -44,11 +44,13 @@ const LoginForm = ({ users }) => {
     setSubmitting(false);
   };
 
-  let history = useHistory();
+  // let history = useHistory();
 
-  function handleClick() {
-    history.push("/feed");
-  }
+  // function handleClick() {
+  //   history.push("/feed");
+  // }
+
+  // onClick={handleClick}
 
   return (
 
@@ -73,7 +75,7 @@ const LoginForm = ({ users }) => {
         </div>
         <br/>
         <div>
-          <button type="submit" onClick={handleClick}>Sign In</button>
+          <button type="submit">Sign In</button>
         </div>
       </Form>
     </Formik>

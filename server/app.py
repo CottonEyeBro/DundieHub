@@ -3,6 +3,7 @@
 from config import app
 from models import db, User
 from flask import Flask, make_response, request, session
+from datetime import datetime
 
 from routes.user_routes import users, user_by_id
 from routes.user_group_routes import user_groups, user_group_by_id
@@ -21,12 +22,19 @@ def signup():
     # allow for user to signup new account
     form_data = request.get_json()
 
+    name = form_data['name']
     username = form_data['username']
     password = form_data['password']
 
     try:
+
+        # Get the current date and time
+        current_datetime = datetime.utcnow()
+
         new_user = User(
-            username = username
+            name = name,
+            username = username,
+            joined_on = current_datetime # Add the current date and time to the User object
         )
         # generates hashed password
         new_user.password_hash = password

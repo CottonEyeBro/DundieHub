@@ -1,7 +1,17 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 
-function NavBar() {
+function NavBar( {users, setUsers} ) {
+
+    function handleLogoutClick() {
+        
+        fetch("/logout", { method: "DELETE" })
+            .then((resp) => {
+                if (resp.ok) {
+                    setUsers(null);
+          }
+        });
+      }
 
     return (
         <div className="main-header">  
@@ -21,6 +31,9 @@ function NavBar() {
                 </div>
                 <div className="group-profile">
                     <NavLink to="/group-profile">Group Profile</NavLink>
+                </div>
+                <div className="logout-button">
+                    <button onClick={handleLogoutClick}>Logout</button>
                 </div>
             </div>
         </div>

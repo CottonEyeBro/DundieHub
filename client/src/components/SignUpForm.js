@@ -20,12 +20,12 @@ const SignUpForm = ({ users }) => {
       .required('Required'),
   });
 
-  let history = useHistory();
+  // let history = useHistory();
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       // Send signup request to your backend
-      const response = await fetch('/user_signup', {
+      const response = await fetch('/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,9 +51,11 @@ const SignUpForm = ({ users }) => {
     setSubmitting(false);
   };
 
-  function handleClick() {
-    history.push("/user-profile");
-  }
+  // function handleClick() {
+  //   history.push("/user-profile");
+  // }
+
+  // onClick={handleClick}
 
   return (
     <Formik
@@ -89,7 +91,7 @@ const SignUpForm = ({ users }) => {
         </div>
         <br />
         <div>
-          <button type="submit" onClick={handleClick}>Sign Up</button>
+          <button type="submit">Sign Up</button>
         </div>
       </Form>
     </Formik>

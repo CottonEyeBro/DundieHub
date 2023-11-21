@@ -4,6 +4,7 @@ from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
+from datetime import datetime
 from config import db, bcrypt
 
 class User(db.Model, SerializerMixin): # ====================================================================================================================
@@ -17,7 +18,7 @@ class User(db.Model, SerializerMixin): # =======================================
     name = db.Column(db.String)
     username = db.Column(db.String, unique = True)
     _password_hash = db.Column(db.String)
-    joined_on = db.Column(db.String)
+    joined_on = db.Column(db.DateTime, default = datetime.utcnow)
     # profile_photo = db.Column() -------------------------> Stretch goal
 
 
