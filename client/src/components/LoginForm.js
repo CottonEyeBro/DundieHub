@@ -1,9 +1,12 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const LoginForm = ({ setUsers }) => {
+const LoginForm = ({ setUsers, setCheckUserSession }) => {
+
+  // console.log(setCheckUserSession)
+
   const initialValues = {
     username: '',
     password: '',

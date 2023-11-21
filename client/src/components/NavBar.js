@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 
-function NavBar( {users, setUsers} ) {
+function NavBar( {users, setUsers, checkUserSession, setCheckUserSession} ) {
 
     function handleLogoutClick() {
         

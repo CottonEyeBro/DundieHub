@@ -10,7 +10,9 @@ import { Switch, Route } from "react-router-dom";
 function App() {
 
   const [users, setUsers] = useState(null)
-  // console.log(setUsers)
+  const [checkUserSession, setCheckUserSession] = useState(null)
+
+  console.log(setUsers)
 
   useEffect(() => {
       fetch("/users")
@@ -22,17 +24,19 @@ function App() {
     // auto-login
     fetch("/check_user_session").then((r) => {
       if (r.ok) {
-        r.json().then((data) => setUsers(data));
+        r.json().then((data) => setCheckUserSession(data));
       }
     });
   }, []);
 
-  if (!users) return <Login setUsers={setUsers} />;
+
+  if (!users) console.log(setCheckUserSession)
+  if (!users) return <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
 
   return (
     <>
       <div className="App">
-        <NavBar users={users} setUsers={setUsers} />
+        <NavBar users={users} setUsers={setUsers} checkUserSession={checkUserSession} setCheckUserSession={setCheckUserSession} />
         <Switch>
           <Route exact path="/login">
             <Login />

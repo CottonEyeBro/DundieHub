@@ -1,6 +1,7 @@
 from flask import Flask, make_response, request
 from models import db, User, User_Group, Group, Post, Comment
 from config import app
+from datetime import datetime
 
 @app.route('/posts', methods = ['GET', 'POST'])
 def posts():
@@ -17,11 +18,18 @@ def posts():
     elif request.method == 'POST':
         form_data = request.get_json()
 
+        user_id = form_data['user_id']
+        content = form_data['content']
+
         try:
+
+            # Get the current date and time as of posting
+            current_datetime = datetime.utcnow()
+
             new_post_obj = Post(
-                user_id = form_data['user_id'],
-                content = form_data['content'],
-                posted_at = form_data['posted_at']
+                user_id = user_id,
+                content = content,
+                posted_at = current_datetime # Add the current date and time to the new_post_obj
             )
 
             db.session.add(new_post_obj)

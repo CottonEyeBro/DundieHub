@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const SignUpForm = ({ setUsers }) => {
+const SignUpForm = ({ setUsers, setCheckUserSession }) => {
   const initialValues = {
     name: '',
     username: '',

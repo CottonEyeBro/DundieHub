@@ -145,7 +145,7 @@ class Post(db.Model, SerializerMixin): # =======================================
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.String)
-    posted_at = db.Column(db.String)
+    posted_at = db.Column(db.DateTime, default = datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # img_content = db.Column() -------------------------> Stretch goal
 
@@ -177,7 +177,7 @@ class Comment(db.Model, SerializerMixin): # ====================================
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.String)
-    commented_at = db.Column(db.String)
+    commented_at = db.Column(db.DateTime, default = datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     # img_content = db.Column() -------------------------> Stretch goal 

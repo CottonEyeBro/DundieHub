@@ -1,12 +1,31 @@
 import React, { useEffect, useState } from "react";
+import NewPostForm from "./NewPostForm";
 
-function Feed( {users} ) {
+function Feed() {
 
 
     const [posts, setPosts] = useState([])
-    const [comments, setComments] = useState([])
-    const [groups, setGroups] = useState([])
-    const [userGroups, setUserGroups] = useState([])
+    // const [comments, setComments] = useState([])
+    // const [groups, setGroups] = useState([])
+    // const [userGroups, setUserGroups] = useState([])
+
+    // useEffect(() => {
+    //     fetch("/comments")
+    //         .then((resp) => resp.json())
+    //         .then((data) => setComments(data))
+    // }, [])
+
+    // useEffect(() => {
+    //     fetch("/groups")
+    //         .then((resp) => resp.json())
+    //         .then((data) => setGroups(data))
+    // }, [])
+
+    // useEffect(() => {
+    //     fetch("/user_groups")
+    //         .then((resp) => resp.json())
+    //         .then((data) => setUserGroups(data))
+    // }, [])
 
     useEffect(() => {
         fetch("/posts")
@@ -14,30 +33,46 @@ function Feed( {users} ) {
             .then((data) => setPosts(data))
     }, [])
 
-    useEffect(() => {
-        fetch("/comments")
-            .then((resp) => resp.json())
-            .then((data) => setComments(data))
-    }, [])
+    const handleNewPost = async (values, { resetForm }) => {
 
-    useEffect(() => {
-        fetch("/groups")
-            .then((resp) => resp.json())
-            .then((data) => setGroups(data))
-    }, [])
+        try {
 
-    useEffect(() => {
-        fetch("/user_groups")
-            .then((resp) => resp.json())
-            .then((data) => setUserGroups(data))
-    }, [])
+            // Send a POST request to add the new post
+            const response = await fetch("/posts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+            });
+
+            if (response.ok) {
+                const createdPost = await response.json();
+
+                // Update the posts state with the new post
+                setPosts((prevPosts) => [createdPost, ...prevPosts]);
+
+                // Reset the form after successful submission
+                resetForm();
+
+            } else {
+                const error = await response.json();
+                console.error("Failed to add post:", error);
+            }
+        } catch (error) {
+          console.error("Error during post creation:", error);
+        }
+      };
 
     function viewPosts() {
         const postCards = posts.map((post) => {
             // console.log(post)
+
             // Sort comments by the 'commented_at' timestamp in ascending order
             const sortedComments = post.comments.sort((a, b) => new Date(a.commented_at) - new Date(b.commented_at));
+
             return (
+
                 <div key={post.id} className="post-card">
                     <div className="postcontentbox">
                         <h2>{post.user.name}</h2>
@@ -69,6 +104,7 @@ function Feed( {users} ) {
     return (
         <div className="main-feed">
             <h1>Posts</h1>
+            <NewPostForm onSubmit={handleNewPost} />
             <div className="card">
                 {viewPosts()}
             </div>

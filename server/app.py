@@ -89,12 +89,12 @@ def user_login():
         is_authenticated = user.authenticate(password)
         if is_authenticated:
             session['user_id'] = user.id
-            resp = make_response(user.to_dict(), 201)
+            response= make_response(user.to_dict(), 201)
         else:
-            resp = make_response({"ERROR" : "USER CANNOT LOG IN"}, 400)
+            response= make_response({"ERROR" : "USER CANNOT LOG IN"}, 400)
     else:
-        resp = make_response({"ERROR" : "USER NOT FOUND"}, 404)
-    return resp
+        response= make_response({"ERROR" : "USER NOT FOUND"}, 404)
+    return response
 
 @app.route('/logout', methods = ['DELETE'])
 def logout():
