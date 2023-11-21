@@ -4,6 +4,7 @@ from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
+from datetime import datetime
 from config import db, bcrypt
 
 class User(db.Model, SerializerMixin): # ====================================================================================================================
@@ -17,7 +18,7 @@ class User(db.Model, SerializerMixin): # =======================================
     name = db.Column(db.String)
     username = db.Column(db.String, unique = True)
     _password_hash = db.Column(db.String)
-    joined_on = db.Column(db.String)
+    joined_on = db.Column(db.DateTime, default = datetime.utcnow)
     # profile_photo = db.Column() -------------------------> Stretch goal
 
 
@@ -138,12 +139,13 @@ class Post(db.Model, SerializerMixin): # =======================================
     __tablename__ = 'posts'
 
     # Serialize Rules
-    serialize_rules = ('-user.posts', '-comments.post', '-user.user_groups', '-comments.user', '-user.comments')
+    serialize_rules = ('-user.posts', '-comments.post', '-user.user_groups', '-user.comments')
+    #  '-comments.user', ===> Removed to view user info within comments arrays
 
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.String)
-    posted_at = db.Column(db.String)
+    posted_at = db.Column(db.DateTime, default = datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # img_content = db.Column() -------------------------> Stretch goal
 
@@ -175,7 +177,7 @@ class Comment(db.Model, SerializerMixin): # ====================================
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.String)
-    commented_at = db.Column(db.String)
+    commented_at = db.Column(db.DateTime, default = datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     # img_content = db.Column() -------------------------> Stretch goal 

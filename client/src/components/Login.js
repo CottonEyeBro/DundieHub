@@ -1,26 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
-import { Link } from "react-router-dom";
 
+function Login( {setUsers, setCheckUserSession} ) {
 
-function Login() {
-
-    const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        fetch('/users')
-            .then((response) => response.json())
-            .then((data) => setUsers(data))
-    }, []);
-
-    console.log(users)
+    const [showLogin, setShowLogin] = useState(true);
+    // console.log(setUsers)
 
     return (
         <div className="login_page">
-            <h1>Login Page</h1>
-            <LoginForm users={users} />
-            <SignUpForm />
+            {showLogin ? (
+                <>
+                    <LoginForm setUsers={setUsers} setCheckUserSession={setCheckUserSession} />
+                    <p>
+                        Don't have an account? &nbsp;
+                        <button onClick={() => setShowLogin(false)}>Create account</button>
+                    </p>
+                </>
+            ) : (
+                <>
+                    <SignUpForm setUsers={setUsers} setCheckUserSession={setCheckUserSession} />
+                    <p>
+                        Already have an account? &nbsp;
+                        <button onClick={() => setShowLogin(true)}>Log in</button>
+                    </p>
+                </>
+            )}
         </div>
     );
 }

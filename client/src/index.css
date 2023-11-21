@@ -1,7 +1,71 @@
-:root {
-  --bg: #282c34;
-  --header: #fff;
-  --link: #61dafb;
-  --text: hsla(0, 0%, 100%, 0.88);
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.main-header {
+  width: 100%;
+  padding: 20px;
+  top: 0;
+  background-color: #282C2F;
+  color: white;
 }
 
+.navbar a:link {
+  color: rgb(0, 183, 255);
+}
+
+.navbar a:visited {
+  color: rgb(228, 86, 197);
+}
+
+.logo {
+  font-family: 'Anton';
+  color: white;
+  font-size: 4rem;
+  text-decoration: none;
+  border: 5px solid white;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 16px;
+}
+
+.logo:visited {
+  color: white;
+}
+
+.postcontentbox {
+  background-color: #282c2f73;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 16px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.comment {
+  background-color: beige;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-left: 15px;
+}
+
+footer {
+  position: fixed;
+  width: 100%;
+  padding: 20px;
+  bottom: 0;
+  background-color: #282C2F;
+  color: white;
+}
+
+footer a:link {
+  color: rgb(0, 183, 255);
+}
+
+footer a:visited {
+  color: rgb(228, 86, 197);
+}
+
+.about p {
+  color: grey;
+}
