@@ -12,7 +12,7 @@ function App() {
   const [users, setUsers] = useState(null)
   const [checkUserSession, setCheckUserSession] = useState(null)
 
-  console.log(setUsers)
+  // console.log(setUsers)
 
   useEffect(() => {
       fetch("/users")
@@ -30,7 +30,7 @@ function App() {
   }, []);
 
 
-  if (!users) console.log(setCheckUserSession)
+  // if (!users) console.log(setCheckUserSession)
   if (!users) return <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
 
   return (
