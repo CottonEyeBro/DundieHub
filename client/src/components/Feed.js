@@ -10,8 +10,8 @@ function Feed() {
     const [editPostId, setEditPostId] = useState("")
 
     // console.log(showForm)
-    console.log(editPostContent)
-    console.log(editPostId)
+    // console.log(editPostContent)
+    // console.log(editPostId)
 
     useEffect(() => {
         fetch("/posts")
@@ -75,7 +75,7 @@ function Feed() {
                         <p><em>Posted: {post.posted_at}</em></p>
                         {/* <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button> */}
                         <button className="postcardbuttons" onClick={() => editPost(post)}>Edit</button>
-                        {/* <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button> */}
+                        <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button>
                         {post.comments.length > 0 ? 
                         <div className="commentcontentbox">
                             <h3>Comments:</h3>
@@ -105,10 +105,20 @@ function Feed() {
     //     console.log(post)
     // }
 
-    // function deletePost(post) {
-    //     console.log("delete button selected")
-    //     console.log(post.id)
-    // }
+    function deletePost(post) {
+        console.log("delete button selected")
+        console.log(post.id)
+        fetch(`/posts/${post.id}`, {
+            method: "DELETE"
+        })
+        const updatedPosts = []
+        posts.forEach(item => {
+            if (item.id !== post.id) {
+                updatedPosts.push(item)
+            }
+        })
+        setPosts(updatedPosts)
+    }
 
     // function editComment(comment) {
     //     console.log("edit button selected")
@@ -122,7 +132,7 @@ function Feed() {
 
     function editPost(post) {
         console.log("edit button selected")
-        console.log(post.id)
+        // console.log(post.id)
         setEditPostId(post.id)
         setShowForm(true)
         setFormData({
@@ -130,7 +140,7 @@ function Feed() {
         })
     }
 
-    console.log(editPostId)
+    // console.log(editPostId)
 
     const [formData, setFormData] = useState({ 
         content: editPostContent.content
