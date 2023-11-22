@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
+/* .App {
+  background-image: "./images/Office Building Background.jpg";
+} */
+
 .main-header {
   width: 100%;
   padding: 20px;
@@ -33,9 +37,9 @@
 
 .postcontentbox {
   background-color: #282c2f73;
-  border: 1px solid #ccc;
+  border: 6px solid #282C2F;
   padding: 15px;
-  border-radius: 16px;
+  border-radius: 60px 60px 60px 0px;
   margin-top: 15px;
   margin-bottom: 15px;
 }
@@ -43,6 +47,8 @@
 .postcontentbox img {
   width: 120px;
   height: 120px;
+  border: 5px solid rgb(87, 87, 87);
+  border-radius: 55px;
 }
 
 .comment {

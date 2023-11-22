@@ -53,7 +53,7 @@ function App() {
           </Route>
         </Switch>
         <br></br>
-        <br></br>
+        {/* <img src="./images/Office Logo.png" alt="The Office logo" /> */}
         <br></br>
         <Footer className="footer" />
       </div>
