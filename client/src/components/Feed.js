@@ -5,13 +5,23 @@ function Feed() {
 
 
     const [posts, setPosts] = useState([])
+    const [showForm, setShowForm] = useState(false)
+    const [editPostContent, setEditPostContent] = useState([])
+    const [editPostId, setEditPostId] = useState("")
+
+    // console.log(showForm)
+    console.log(editPostContent)
+    console.log(editPostId)
 
     useEffect(() => {
         fetch("/posts")
             .then((resp) => resp.json())
-            .then((data) => setPosts(data))
+            .then((data) =>{ 
+                setPosts(data)
+                setEditPostContent(data)
+            })
     }, [])
-
+    
     const handleNewPost = async (values, { resetForm }) => {
 
         try {
@@ -63,9 +73,9 @@ function Feed() {
                         <h3><em>&lt;{post.user.username}&gt;</em></h3>
                         <p>{post.content}</p>
                         <p><em>Posted: {post.posted_at}</em></p>
-                        <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button>
+                        {/* <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button> */}
                         <button className="postcardbuttons" onClick={() => editPost(post)}>Edit</button>
-                        <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button>
+                        {/* <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button> */}
                         {post.comments.length > 0 ? 
                         <div className="commentcontentbox">
                             <h3>Comments:</h3>
@@ -75,8 +85,8 @@ function Feed() {
                                     <h5>&lt;{comment.user.username}&gt;</h5>
                                     <p>{comment.content}</p>
                                     <p><em>{comment.commented_at}</em></p>
-                                    <button className="commentcardbuttons" onClick={() => editComment(comment)}>Edit</button>
-                                    <button className="commentcardbuttons" onClick={() => deleteComment(comment)}>Delete</button>
+                                    {/* <button className="commentcardbuttons" onClick={() => editComment(comment)}>Edit</button>
+                                    <button className="commentcardbuttons" onClick={() => deleteComment(comment)}>Delete</button> */}
                                 </div>
                                 
                             ))}
@@ -90,35 +100,103 @@ function Feed() {
         return postCards
     }
 
-    function addComment(post) {
-        console.log("add comment button selected")
-        console.log(post)
-    }
+    // function addComment(post) {
+    //     console.log("add comment button selected")
+    //     console.log(post)
+    // }
+
+    // function deletePost(post) {
+    //     console.log("delete button selected")
+    //     console.log(post.id)
+    // }
+
+    // function editComment(comment) {
+    //     console.log("edit button selected")
+    //     console.log(comment)
+    // }
+
+    // function deleteComment(comment) {
+    //     console.log("delete button selected")
+    //     console.log(comment.id)
+    // }
 
     function editPost(post) {
         console.log("edit button selected")
-        console.log(post)
-    }
-
-    function deletePost(post) {
-        console.log("delete button selected")
         console.log(post.id)
+        setEditPostId(post.id)
+        setShowForm(true)
+        setFormData({
+            content: post.content
+        })
     }
 
-    function editComment(comment) {
-        console.log("edit button selected")
-        console.log(comment)
+    console.log(editPostId)
+
+    const [formData, setFormData] = useState({ 
+        content: editPostContent.content
+        })
+    
+    function handleChange(e) { 
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+        }
+
+    function handleEdit(e) {
+        e.preventDefault()
+        //console.log(editPostContent)
+        fetch(`/posts/${editPostId}`, {
+            method:"PATCH",
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify(formData)
+        })
+        .then(resp => resp.json())
+        .then(updatedPost => {
+            console.log(updatedPost)
+            const updatedPosts = posts.map(originalPost => {
+                if (originalPost.id === updatedPost.id) {
+                    return updatedPost
+                } else {
+                    return originalPost
+                }
+            })
+            setPosts(updatedPosts)
+            setShowForm(false)
+        })
+
     }
 
-    function deleteComment(comment) {
-        console.log("delete button selected")
-        console.log(comment.id)
+    function displayForm() {
+        return (
+            <div className="editcard">
+                <h3> Edit Post </h3>
+                <form onSubmit={handleEdit} className="edit-form">
+                    <label htmlFor="content">Content: </label>
+                    <input
+                        type="text"
+                        name="content"
+                        value={formData.content}
+                        defaultValue={editPostContent.content}
+                        onChange={handleChange}
+                        className="input-text"
+                    />
+                    <br/>
+                    <br/>
+                    <input className="buttons" type="submit" value="Save" />
+                    <input className="buttons" type="button" value="Cancel" onClick={() => setShowForm(false)} />
+                </form>
+            </div>
+        )
     }
 
     return (
         <div className="main-feed">
             <h1>Posts</h1>
             <NewPostForm onSubmit={handleNewPost} />
+            <div className="edit-form-div">
+                {showForm === true ? displayForm() : <></>}
+            </div>
             <div className="card">
                 {viewPosts()}
             </div>
