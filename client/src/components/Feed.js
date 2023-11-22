@@ -5,27 +5,6 @@ function Feed() {
 
 
     const [posts, setPosts] = useState([])
-    // const [comments, setComments] = useState([])
-    // const [groups, setGroups] = useState([])
-    // const [userGroups, setUserGroups] = useState([])
-
-    // useEffect(() => {
-    //     fetch("/comments")
-    //         .then((resp) => resp.json())
-    //         .then((data) => setComments(data))
-    // }, [])
-
-    // useEffect(() => {
-    //     fetch("/groups")
-    //         .then((resp) => resp.json())
-    //         .then((data) => setGroups(data))
-    // }, [])
-
-    // useEffect(() => {
-    //     fetch("/user_groups")
-    //         .then((resp) => resp.json())
-    //         .then((data) => setUserGroups(data))
-    // }, [])
 
     useEffect(() => {
         fetch("/posts")

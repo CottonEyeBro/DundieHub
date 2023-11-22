@@ -19,7 +19,7 @@ def posts():
     elif request.method == 'POST':
         form_data = request.get_json()
 
-        print(form_data)
+        # print(form_data)
 
         user_id = session['user_id']
         content = form_data['content']

@@ -1,4 +1,4 @@
-from flask import Flask, make_response, request
+from flask import Flask, make_response, request, session
 from models import db, User, User_Group, Group, Post, Comment
 from config import app
 from datetime import datetime
@@ -19,7 +19,7 @@ def comments():
     elif request.method == 'POST':
         form_data = request.get_json()
 
-        user_id = form_data['user_id']
+        user_id = session['user_id']
         post_id = form_data['post_id']
         content = form_data['content']
 
