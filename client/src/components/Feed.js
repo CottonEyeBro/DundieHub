@@ -65,8 +65,12 @@ function Feed() {
       };
 
     function viewPosts() {
-        const postCards = posts.map((post) => {
-            console.log(post.user.profile_image_url)
+        
+        // Sort posts by the 'posted_at' timestamp in descending order
+        const sortedPosts = posts.sort((a, b) => new Date(b.posted_at) - new Date(a.posted_at));
+        
+        const postCards = sortedPosts.map((post) => {
+            // console.log(post.user.profile_image_url)
 
             // Sort comments by the 'commented_at' timestamp in ascending order
             const sortedComments = post.comments.sort((a, b) => new Date(a.commented_at) - new Date(b.commented_at));

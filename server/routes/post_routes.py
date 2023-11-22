@@ -1,7 +1,8 @@
-from flask import Flask, make_response, request
+from flask import Flask, make_response, request, session
 from models import db, User, User_Group, Group, Post, Comment
 from config import app
 from datetime import datetime
+
 
 @app.route('/posts', methods = ['GET', 'POST'])
 def posts():
@@ -18,7 +19,9 @@ def posts():
     elif request.method == 'POST':
         form_data = request.get_json()
 
-        user_id = form_data['user_id']
+        print(form_data)
+
+        user_id = session['user_id']
         content = form_data['content']
 
         try:
