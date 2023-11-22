@@ -1,6 +1,8 @@
-from flask import Flask, make_response, request
+from flask import Flask, make_response, request, session
 from models import db, User, User_Group, Group, Post, Comment
 from config import app
+from datetime import datetime
+
 
 @app.route('/comments', methods = ['GET', 'POST'])
 def comments():
@@ -17,12 +19,20 @@ def comments():
     elif request.method == 'POST':
         form_data = request.get_json()
 
+        user_id = session['user_id']
+        post_id = form_data['post_id']
+        content = form_data['content']
+
         try:
+
+            # Get the current date and time as of posting
+            current_datetime = datetime.utcnow()
+
             new_comment_obj = Comment(
-                user_id = form_data['user_id'],
-                post_id = form_data['post_id'],
-                content = form_data['content'],
-                commented_at = form_data['commented_at']
+                user_id = user_id,
+                post_id = post_id,
+                content = content,
+                commented_at = current_datetime # Add the current date and time to the new_comment_obj
             )
 
             db.session.add(new_comment_obj)

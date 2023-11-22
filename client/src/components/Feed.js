@@ -5,34 +5,23 @@ function Feed() {
 
 
     const [posts, setPosts] = useState([])
-    // const [comments, setComments] = useState([])
-    // const [groups, setGroups] = useState([])
-    // const [userGroups, setUserGroups] = useState([])
+    const [showForm, setShowForm] = useState(false)
+    const [editPostContent, setEditPostContent] = useState([])
+    const [editPostId, setEditPostId] = useState("")
 
-    // useEffect(() => {
-    //     fetch("/comments")
-    //         .then((resp) => resp.json())
-    //         .then((data) => setComments(data))
-    // }, [])
-
-    // useEffect(() => {
-    //     fetch("/groups")
-    //         .then((resp) => resp.json())
-    //         .then((data) => setGroups(data))
-    // }, [])
-
-    // useEffect(() => {
-    //     fetch("/user_groups")
-    //         .then((resp) => resp.json())
-    //         .then((data) => setUserGroups(data))
-    // }, [])
+    // console.log(showForm)
+    // console.log(editPostContent)
+    // console.log(editPostId)
 
     useEffect(() => {
         fetch("/posts")
             .then((resp) => resp.json())
-            .then((data) => setPosts(data))
+            .then((data) =>{ 
+                setPosts(data)
+                setEditPostContent(data)
+            })
     }, [])
-
+    
     const handleNewPost = async (values, { resetForm }) => {
 
         try {
@@ -65,8 +54,12 @@ function Feed() {
       };
 
     function viewPosts() {
-        const postCards = posts.map((post) => {
-            console.log(post.user.profile_image_url)
+        
+        // Sort posts by the 'posted_at' timestamp in descending order
+        const sortedPosts = posts.sort((a, b) => new Date(b.posted_at) - new Date(a.posted_at));
+        
+        const postCards = sortedPosts.map((post) => {
+            // console.log(post.user.profile_image_url)
 
             // Sort comments by the 'commented_at' timestamp in ascending order
             const sortedComments = post.comments.sort((a, b) => new Date(a.commented_at) - new Date(b.commented_at));
@@ -80,7 +73,7 @@ function Feed() {
                         <h3><em>&lt;{post.user.username}&gt;</em></h3>
                         <p>{post.content}</p>
                         <p><em>Posted: {post.posted_at}</em></p>
-                        <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button>
+                        {/* <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button> */}
                         <button className="postcardbuttons" onClick={() => editPost(post)}>Edit</button>
                         <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button>
                         {post.comments.length > 0 ? 
@@ -92,8 +85,8 @@ function Feed() {
                                     <h5>&lt;{comment.user.username}&gt;</h5>
                                     <p>{comment.content}</p>
                                     <p><em>{comment.commented_at}</em></p>
-                                    <button className="commentcardbuttons" onClick={() => editComment(comment)}>Edit</button>
-                                    <button className="commentcardbuttons" onClick={() => deleteComment(comment)}>Delete</button>
+                                    {/* <button className="commentcardbuttons" onClick={() => editComment(comment)}>Edit</button>
+                                    <button className="commentcardbuttons" onClick={() => deleteComment(comment)}>Delete</button> */}
                                 </div>
                                 
                             ))}
@@ -107,35 +100,113 @@ function Feed() {
         return postCards
     }
 
-    function addComment(post) {
-        console.log("add comment button selected")
-        console.log(post)
-    }
-
-    function editPost(post) {
-        console.log("edit button selected")
-        console.log(post)
-    }
+    // function addComment(post) {
+    //     console.log("add comment button selected")
+    //     console.log(post)
+    // }
 
     function deletePost(post) {
         console.log("delete button selected")
         console.log(post.id)
+        fetch(`/posts/${post.id}`, {
+            method: "DELETE"
+        })
+        const updatedPosts = []
+        posts.forEach(item => {
+            if (item.id !== post.id) {
+                updatedPosts.push(item)
+            }
+        })
+        setPosts(updatedPosts)
     }
 
-    function editComment(comment) {
+    // function editComment(comment) {
+    //     console.log("edit button selected")
+    //     console.log(comment)
+    // }
+
+    // function deleteComment(comment) {
+    //     console.log("delete button selected")
+    //     console.log(comment.id)
+    // }
+
+    function editPost(post) {
         console.log("edit button selected")
-        console.log(comment)
+        // console.log(post.id)
+        setEditPostId(post.id)
+        setShowForm(true)
+        setFormData({
+            content: post.content
+        })
     }
 
-    function deleteComment(comment) {
-        console.log("delete button selected")
-        console.log(comment.id)
+    // console.log(editPostId)
+
+    const [formData, setFormData] = useState({ 
+        content: editPostContent.content
+        })
+    
+    function handleChange(e) { 
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+        }
+
+    function handleEdit(e) {
+        e.preventDefault()
+        //console.log(editPostContent)
+        fetch(`/posts/${editPostId}`, {
+            method:"PATCH",
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify(formData)
+        })
+        .then(resp => resp.json())
+        .then(updatedPost => {
+            console.log(updatedPost)
+            const updatedPosts = posts.map(originalPost => {
+                if (originalPost.id === updatedPost.id) {
+                    return updatedPost
+                } else {
+                    return originalPost
+                }
+            })
+            setPosts(updatedPosts)
+            setShowForm(false)
+        })
+
+    }
+
+    function displayForm() {
+        return (
+            <div className="editcard">
+                <h3> Edit Post </h3>
+                <form onSubmit={handleEdit} className="edit-form">
+                    <label htmlFor="content">Content: </label>
+                    <input
+                        type="text"
+                        name="content"
+                        value={formData.content}
+                        defaultValue={editPostContent.content}
+                        onChange={handleChange}
+                        className="input-text"
+                    />
+                    <br/>
+                    <br/>
+                    <input className="buttons" type="submit" value="Save" />
+                    <input className="buttons" type="button" value="Cancel" onClick={() => setShowForm(false)} />
+                </form>
+            </div>
+        )
     }
 
     return (
         <div className="main-feed">
             <h1>Posts</h1>
             <NewPostForm onSubmit={handleNewPost} />
+            <div className="edit-form-div">
+                {showForm === true ? displayForm() : <></>}
+            </div>
             <div className="card">
                 {viewPosts()}
             </div>

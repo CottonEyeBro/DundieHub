@@ -1,4 +1,4 @@
-from flask import Flask, make_response, request
+from flask import Flask, make_response, request, session
 from models import db, User, User_Group, Group, Post, Comment
 from config import app
 
