@@ -80,6 +80,7 @@ function Feed() {
                         <h3><em>&lt;{post.user.username}&gt;</em></h3>
                         <p>{post.content}</p>
                         <p><em>Posted: {post.posted_at}</em></p>
+                        <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button>
                         <button className="postcardbuttons" onClick={() => editPost(post)}>Edit</button>
                         <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button>
                         {post.comments.length > 0 ? 
@@ -104,6 +105,11 @@ function Feed() {
             )
         })
         return postCards
+    }
+
+    function addComment(post) {
+        console.log("add comment button selected")
+        console.log(post)
     }
 
     function editPost(post) {
