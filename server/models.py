@@ -19,7 +19,7 @@ class User(db.Model, SerializerMixin): # =======================================
     username = db.Column(db.String, unique = True)
     _password_hash = db.Column(db.String)
     joined_on = db.Column(db.DateTime, default = datetime.utcnow)
-    # profile_photo = db.Column() -------------------------> Stretch goal
+    profile_image_url = db.Column(db.String)
 
 
     # Relationships
@@ -68,7 +68,7 @@ class User(db.Model, SerializerMixin): # =======================================
 
     # __repr__
     def __repr__(self):
-        return f'<User {self.id}: {self.name}. Username: {self.username}. Password: {self.password}. Joined: {self.joined_on}.\n>'
+        return f'<User {self.id}: {self.name}. Username: {self.username}. Password: {self.password}. Profile Photo: {self.profile_image_url} Joined: {self.joined_on}.\n>'
 
 
 

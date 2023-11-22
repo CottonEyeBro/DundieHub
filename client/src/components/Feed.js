@@ -66,7 +66,7 @@ function Feed() {
 
     function viewPosts() {
         const postCards = posts.map((post) => {
-            // console.log(post)
+            console.log(post.user.profile_image_url)
 
             // Sort comments by the 'commented_at' timestamp in ascending order
             const sortedComments = post.comments.sort((a, b) => new Date(a.commented_at) - new Date(b.commented_at));
@@ -75,10 +75,13 @@ function Feed() {
 
                 <div key={post.id} className="post-card">
                     <div className="postcontentbox">
+                        <img src={post.user.profile_image_url} alt="User profile portrait" />
                         <h2>{post.user.name}</h2>
                         <h3><em>&lt;{post.user.username}&gt;</em></h3>
                         <p>{post.content}</p>
                         <p><em>Posted: {post.posted_at}</em></p>
+                        <button className="postcardbuttons" onClick={() => editPost(post)}>Edit</button>
+                        <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button>
                         {post.comments.length > 0 ? 
                         <div className="commentcontentbox">
                             <h3>Comments:</h3>
@@ -88,6 +91,8 @@ function Feed() {
                                     <h5>&lt;{comment.user.username}&gt;</h5>
                                     <p>{comment.content}</p>
                                     <p><em>{comment.commented_at}</em></p>
+                                    <button className="commentcardbuttons" onClick={() => editComment(comment)}>Edit</button>
+                                    <button className="commentcardbuttons" onClick={() => deleteComment(comment)}>Delete</button>
                                 </div>
                                 
                             ))}
@@ -99,6 +104,26 @@ function Feed() {
             )
         })
         return postCards
+    }
+
+    function editPost(post) {
+        console.log("edit button selected")
+        console.log(post)
+    }
+
+    function deletePost(post) {
+        console.log("delete button selected")
+        console.log(post.id)
+    }
+
+    function editComment(comment) {
+        console.log("edit button selected")
+        console.log(comment)
+    }
+
+    function deleteComment(comment) {
+        console.log("delete button selected")
+        console.log(comment.id)
     }
 
     return (

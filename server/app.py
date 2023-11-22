@@ -63,6 +63,7 @@ def check_session():
     # check current session
     user_id = session['user_id']
     user = User.query.filter(User.id == user_id).first()
+
     if user:
         response = make_response(
             user.to_dict(), 

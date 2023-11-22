@@ -13,72 +13,84 @@ def create_users():
     u1 = User(
         name = 'Michael Scott',
         username = 'agentmichaelscarn',
+        profile_image_url = './images/Michael.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 0, second = 0, microsecond = 0, fold = 0)
     )
     u1.password_hash = 'iluvpaper1234'
     u2 = User(
         name = 'Dwight Schrute',
         username = 'schrutefarmsbnb',
+        profile_image_url = './images/Dwight.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 1, second = 0, microsecond = 0, fold = 0)
     )
     u2.password_hash = 'iluvmichael1234'
     u3 = User(
         name = 'Jim Halpert',
         username = 'bigtuna',
+        profile_image_url = './images/Jim.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 2, second = 0, microsecond = 0, fold = 0)
     )
     u3.password_hash = 'iluvpam1234'
     u4 = User(
         name = 'Pam Beesly',
         username = 'whitestsneakers',
+        profile_image_url = './images/Pam.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 3, second = 0, microsecond = 0, fold = 0)
     )
     u4.password_hash = 'iluvjim1234'
     u5 = User(
         name = 'Creed Bratton',
         username = 'irontothefire',
+        profile_image_url = './images/Creed.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 4, second = 0, microsecond = 0, fold = 0)
     )
     u5.password_hash = 'iamthescrantonstrangler'
     u6 = User(
         name = 'Stanley Hudson',
         username = 'iamtoooldforthis',
+        profile_image_url = './images/Stanley.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 5, second = 0, microsecond = 0, fold = 0)
     )
     u6.password_hash = 'iluvpretzelday1234'
     u7 = User(
         name = 'Andy Bernard',
         username = 'herecomestreble',
+        profile_image_url = './images/Andy.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 6, second = 0, microsecond = 0, fold = 0)
     )
     u7.password_hash = 'iluvcornell1234'
     u8 = User(
         name = 'Angela Martin',
         username = 'kittymom452',
+        profile_image_url = './images/Angela.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 7, second = 0, microsecond = 0, fold = 0)
     )
     u8.password_hash = 'iluvmycats1234'
     u9 = User(
         name = 'Kevin Malone',
         username = 'scrantonicity2',
+        profile_image_url = './images/Kevin.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 8, second = 0, microsecond = 0, fold = 0)
     )
     u9.password_hash = 'iluvchili1234'
     u10 = User(
         name = 'Ryan Howard',
         username = 'iamthetemp',
+        profile_image_url = './images/Ryan.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 9, second = 0, microsecond = 0, fold = 0)
     )
     u10.password_hash = 'iluvmoney1234'
     u11 = User(
         name = 'Oscar Martinez',
         username = 'bacchusgodofwine',
+        profile_image_url = './images/Oscar.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 10, second = 0, microsecond = 0, fold = 0)
     )
     u11.password_hash = 'iluvaccounting1234'
     u12 = User(
         name = 'Kelly Kapoor',
         username = 'ryanloverxoxo',
+        profile_image_url = './images/Kelly.png',
         joined_on = datetime.datetime(month = 11, day = 30, year = 2023, hour = 1, minute = 11, second = 0, microsecond = 0, fold = 0)
     )
     u12.password_hash = 'iluvryan1234'
