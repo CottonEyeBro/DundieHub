@@ -11,6 +11,7 @@ function App() {
 
   const [users, setUsers] = useState(null)
   const [checkUserSession, setCheckUserSession] = useState(null)
+  const [showLogin, setShowLogin] = useState(false)
 
   // console.log(setUsers)
 
@@ -31,7 +32,7 @@ function App() {
 
 
   // if (!users) console.log(setCheckUserSession)
-  if (!users) return <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
+  // if (!users) return <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
 
   return (
     <>
@@ -39,7 +40,7 @@ function App() {
         <NavBar users={users} setUsers={setUsers} checkUserSession={checkUserSession} setCheckUserSession={setCheckUserSession} />
         <Switch>
           <Route exact path="/login">
-            <Login />
+            <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
           </Route>
           <Route exact path="/feed">
             <Feed users={users} />

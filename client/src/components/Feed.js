@@ -80,6 +80,8 @@ function Feed() {
                         <h3><em>&lt;{post.user.username}&gt;</em></h3>
                         <p>{post.content}</p>
                         <p><em>Posted: {post.posted_at}</em></p>
+                        <button className="postcardbuttons" onClick={() => editPost(post)}>Edit</button>
+                        <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button>
                         {post.comments.length > 0 ? 
                         <div className="commentcontentbox">
                             <h3>Comments:</h3>
@@ -89,6 +91,8 @@ function Feed() {
                                     <h5>&lt;{comment.user.username}&gt;</h5>
                                     <p>{comment.content}</p>
                                     <p><em>{comment.commented_at}</em></p>
+                                    <button className="commentcardbuttons" onClick={() => editComment(comment)}>Edit</button>
+                                    <button className="commentcardbuttons" onClick={() => deleteComment(comment)}>Delete</button>
                                 </div>
                                 
                             ))}
@@ -100,6 +104,26 @@ function Feed() {
             )
         })
         return postCards
+    }
+
+    function editPost(post) {
+        console.log("edit button selected")
+        console.log(post)
+    }
+
+    function deletePost(post) {
+        console.log("delete button selected")
+        console.log(post.id)
+    }
+
+    function editComment(comment) {
+        console.log("edit button selected")
+        console.log(comment)
+    }
+
+    function deleteComment(comment) {
+        console.log("delete button selected")
+        console.log(comment.id)
     }
 
     return (

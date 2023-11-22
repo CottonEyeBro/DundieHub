@@ -25,7 +25,6 @@ def signup():
     name = form_data['name']
     username = form_data['username']
     password = form_data['password']
-    # profile_image_url = form_data['profile_image_url']
 
     try:
 
@@ -35,7 +34,6 @@ def signup():
         new_user = User(
             name = name,
             username = username,
-            # profile_image_url = profile_image_url,
             joined_on = current_datetime # Add the current date and time to the User object
         )
         # generates hashed password
@@ -65,20 +63,15 @@ def check_session():
     # check current session
     user_id = session['user_id']
     user = User.query.filter(User.id == user_id).first()
+
     if user:
-
-        # Set default profile image for brand new users
-        user_data = user.to_dict()
-        if user_data.get('profile_image_url') is None:
-            user_data['profile_image_url'] = './images/DM Logo.png'
-
         response = make_response(
-            user_data,
+            user.to_dict(), 
             200
         )
     else:
         response = make_response(
-            {},
+            {}, 
             404
         )
     return response
