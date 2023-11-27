@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm"
 
