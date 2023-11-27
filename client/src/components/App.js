@@ -5,7 +5,8 @@ import Login from "./Login";
 import Feed from "./Feed";
 import UserProfile from "./UserProfile";
 import GroupProfile from "./GroupProfile";
-import { Switch, Route } from "react-router-dom";
+import officeLogo from "/home/clindsley/Development/Code/phase-5/DundieHub-project/client/src/images/Office Logo.png"
+import { Switch, Route, useLocation } from "react-router-dom";
 
 function App() {
 
@@ -29,6 +30,8 @@ function App() {
 
   const user_id = checkUserSession?.id
 
+  const location = useLocation()
+
   // if (!users) console.log(setCheckUserSession)
   // if (!users) return <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
 
@@ -37,6 +40,11 @@ function App() {
       <div className="App">
         <NavBar users={users} setUsers={setUsers} />
         <Switch>
+          <Route exact path = "/">
+            <div className="hero-image">
+            <img src={officeLogo} alt="The Office logo" />
+            </div>
+          </Route>
           <Route exact path="/login">
             <Login setUsers={setUsers} />
           </Route>
@@ -50,9 +58,6 @@ function App() {
             <GroupProfile />
           </Route>
         </Switch>
-        <br></br>
-        {/* <img src="./images/Office Logo.png" alt="The Office logo" /> */}
-        <br></br>
         <Footer />
       </div>
     </>

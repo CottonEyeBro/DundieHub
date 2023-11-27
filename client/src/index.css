@@ -1,8 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-/* .App {
+body {
   background-image: url("/home/clindsley/Development/Code/phase-5/DundieHub-project/client/public/images/Office Building Background.jpg");
-} */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow-x: hidden;
+}
+
+.hero-image {
+  text-align: center;
+}
+
+.hero-image img {
+  position: relative;
+  top: -150px;
+  text-align: center;
+}
 
 html, body {
   height: 90vh;
