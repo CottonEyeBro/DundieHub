@@ -1,8 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 /* .App {
-  background-image: "./images/Office Building Background.jpg";
+  background-image: url("/home/clindsley/Development/Code/phase-5/DundieHub-project/client/public/images/Office Building Background.jpg");
 } */
+
+html, body {
+  height: 90vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
 
 .main-header {
   width: 100%;
@@ -40,8 +49,8 @@
   border: 6px solid #282C2F;
   padding: 15px;
   border-radius: 60px 60px 60px 0px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 20px;
+  width: 95vw;
 }
 
 .postcontentbox img {
@@ -60,19 +69,28 @@
   padding-left: 15px;
 }
 
-footer {
+.footer-absolute {
   width: 100%;
   padding: 20px;
-  bottom: 0;
   background-color: #282C2F;
   color: white;
+  position: absolute;
 }
 
-footer a:link {
+.footer-fixed {
+  width: 100%;
+  padding: 20px;
+  background-color: #282C2F;
+  color: white;
+  position: fixed;
+  bottom: 0;
+}
+
+.contacts a:link {
   color: rgb(0, 183, 255);
 }
 
-footer a:visited {
+.contacts a:visited {
   color: rgb(228, 86, 197);
 }
 
@@ -83,20 +101,22 @@ footer a:visited {
 .login_page {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.signin {
-  text-align: center;
-  border: 2px solid black;
-  width: 50%;
-  padding-bottom: 20px;
-  border-radius: 16px;
-}
-
+.signin,
 .signup {
   text-align: center;
   border: 2px solid black;
-  width: 50%;
+  flex-grow: 1;
+  margin: 10px;
   padding-bottom: 20px;
-  border-radius: 16px;  
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 16px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
 }

@@ -68,9 +68,11 @@ function Feed() {
 
                 <div key={post.id} className="post-card">
                     <div className="postcontentbox">
-                        <img src={post.user.profile_image_url} alt="User profile portrait" />
-                        <h2>{post.user.name}</h2>
-                        <h3><em>&lt;{post.user.username}&gt;</em></h3>
+                        <div className="user-info">
+                            <img src={post.user.profile_image_url} alt="User profile portrait" />
+                            <h2>{post.user.name}</h2>
+                            <h3><em>&lt;{post.user.username}&gt;</em></h3>
+                        </div>
                         <p>{post.content}</p>
                         <p><em>Posted: {post.posted_at}</em></p>
                         {/* <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button> */}

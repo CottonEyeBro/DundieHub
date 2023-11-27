@@ -30,7 +30,6 @@ function App() {
     });
   }, []);
 
-
   // if (!users) console.log(setCheckUserSession)
   // if (!users) return <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
 
@@ -55,7 +54,7 @@ function App() {
         <br></br>
         {/* <img src="./images/Office Logo.png" alt="The Office logo" /> */}
         <br></br>
-        <Footer className="footer" />
+        <Footer />
       </div>
     </>
   );
