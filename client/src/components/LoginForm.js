@@ -66,21 +66,23 @@ const LoginForm = ({ setUsers, setCheckUserSession }) => {
     >
       <Form>
       <br/>
-        <div>
-          <h2>Sign in:</h2>
-          <label htmlFor="username">Username: </label>
-          <Field type="username" id="username" name="username" placeholder="Enter username..." autoComplete="new-username" />
-          <ErrorMessage name="username" component="div" />
-        </div>
-        <br/>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <Field type="password" id="password" name="password" placeholder="Enter password..." autoComplete="new-password" />
-          <ErrorMessage name="password" component="div" />
-        </div>
-        <br/>
-        <div>
-          <button type="submit">Sign In</button>
+        <div className='signin'>
+          <div>
+            <h2>Sign in:</h2>
+            <label htmlFor="username">Username: </label>
+            <Field type="username" id="username" name="username" placeholder="Enter username..." autoComplete="new-username" />
+            <ErrorMessage name="username" component="div" />
+          </div>
+          <br/>
+          <div>
+            <label htmlFor="password">Password: </label>
+            <Field type="password" id="password" name="password" placeholder="Enter password..." autoComplete="new-password" />
+            <ErrorMessage name="password" component="div" />
+          </div>
+          <br/>
+          <div>
+            <button type="submit">Sign In</button>
+          </div>
         </div>
       </Form>
     </Formik>

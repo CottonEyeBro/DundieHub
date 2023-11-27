@@ -40,7 +40,7 @@ function App() {
         <NavBar users={users} setUsers={setUsers} checkUserSession={checkUserSession} setCheckUserSession={setCheckUserSession} />
         <Switch>
           <Route exact path="/login">
-            <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
+            <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />
           </Route>
           <Route exact path="/feed">
             <Feed users={users} />

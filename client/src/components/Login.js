@@ -1,33 +1,23 @@
 import React, { useState } from "react";
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
+import SignUpForm from "./SignUpForm"
 
 function Login( {setUsers, setCheckUserSession} ) {
 
-    const [showLogin, setShowLogin] = useState(true);
+    // const [showLogin, setShowLogin] = useState(true);
     // console.log(setUsers)
 
     return (
         <div className="login_page">
-            {showLogin ? (
-                <>
+                <div>
                     <LoginForm setUsers={setUsers} setCheckUserSession={setCheckUserSession} />
-                    <p>
-                        Don't have an account? &nbsp;
-                        <button onClick={() => setShowLogin(false)}>Create account</button>
-                    </p>
-                </>
-            ) : (
-                <>
+                </div>
+                <div>
                     <SignUpForm setUsers={setUsers} setCheckUserSession={setCheckUserSession} />
-                    <p>
-                        Already have an account? &nbsp;
-                        <button onClick={() => setShowLogin(true)}>Log in</button>
-                    </p>
-                </>
-            )}
+                </div>
         </div>
-    );
+    )
 }
 
 export default Login;

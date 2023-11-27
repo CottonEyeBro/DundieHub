@@ -1,8 +1,8 @@
-"""Initial migration
+"""empty message
 
-Revision ID: 06d4f842de45
+Revision ID: f9f9c150d658
 Revises: 
-Create Date: 2023-11-14 16:42:32.877560
+Create Date: 2023-11-22 18:10:52.499741
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '06d4f842de45'
+revision = 'f9f9c150d658'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,15 +30,16 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=True),
     sa.Column('username', sa.String(), nullable=True),
-    sa.Column('password', sa.String(), nullable=True),
-    sa.Column('joined_on', sa.String(), nullable=True),
+    sa.Column('_password_hash', sa.String(), nullable=True),
+    sa.Column('joined_on', sa.DateTime(), nullable=True),
+    sa.Column('profile_image_url', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('username')
     )
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('content', sa.String(), nullable=True),
-    sa.Column('posted_at', sa.String(), nullable=True),
+    sa.Column('posted_at', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], name=op.f('fk_posts_user_id_users')),
     sa.PrimaryKeyConstraint('id')
@@ -54,7 +55,7 @@ def upgrade():
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('content', sa.String(), nullable=True),
-    sa.Column('commented_at', sa.String(), nullable=True),
+    sa.Column('commented_at', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('post_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], name=op.f('fk_comments_post_id_posts')),

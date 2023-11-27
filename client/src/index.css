@@ -79,3 +79,24 @@ footer a:visited {
 .about p {
   color: grey;
 }
+
+.login_page {
+  display: flex;
+  align-items: center;
+}
+
+.signin {
+  text-align: center;
+  border: 2px solid black;
+  width: 50%;
+  padding-bottom: 20px;
+  border-radius: 16px;
+}
+
+.signup {
+  text-align: center;
+  border: 2px solid black;
+  width: 50%;
+  padding-bottom: 20px;
+  border-radius: 16px;  
+}

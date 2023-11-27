@@ -65,33 +65,35 @@ const SignUpForm = ({ setUsers, setCheckUserSession }) => {
     >
       <Form>
         <br />
-        <div>
-          <h2>Sign up:</h2>
-          <label htmlFor="name">Name: </label>
-          <Field type="text" id="name" name="name" placeholder="Enter your name..." />
-          <ErrorMessage name="name" component="div" />
-        </div>
-        <br />
-        <div>
-          <label htmlFor="username">Username: </label>
-          <Field type="text" id="username" name="username" placeholder="Enter username..." autoComplete="new-username" />
-          <ErrorMessage name="username" component="div" />
-        </div>
-        <br />
-        <div>
-          <label htmlFor="password">Password: </label>
-          <Field type="password" id="password" name="password" placeholder="Enter password..." autoComplete="new-password" />
-          <ErrorMessage name="password" component="div" />
-        </div>
-        <br />
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password: </label>
-          <Field type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password..." autoComplete="new-password" />
-          <ErrorMessage name="confirmPassword" component="div" />
-        </div>
-        <br />
-        <div>
-          <button type="submit">Sign Up</button>
+        <div className='signup'>
+          <div>
+            <h2>Sign up:</h2>
+            <label htmlFor="name">Name: </label>
+            <Field type="text" id="name" name="name" placeholder="Enter your name..." />
+            <ErrorMessage name="name" component="div" />
+          </div>
+          <br />
+          <div>
+            <label htmlFor="username">Username: </label>
+            <Field type="text" id="username" name="username" placeholder="Enter username..." autoComplete="new-username" />
+            <ErrorMessage name="username" component="div" />
+          </div>
+          <br />
+          <div>
+            <label htmlFor="password">Password: </label>
+            <Field type="password" id="password" name="password" placeholder="Enter password..." autoComplete="new-password" />
+            <ErrorMessage name="password" component="div" />
+          </div>
+          <br />
+          <div>
+            <label htmlFor="confirmPassword">Confirm Password: </label>
+            <Field type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password..." autoComplete="new-password" />
+            <ErrorMessage name="confirmPassword" component="div" />
+          </div>
+          <br />
+          <div>
+            <button type="submit">Sign Up</button>
+          </div>
         </div>
       </Form>
     </Formik>
