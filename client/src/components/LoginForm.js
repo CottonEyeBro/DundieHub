@@ -1,11 +1,11 @@
 import React from 'react';
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const LoginForm = ({ setUsers, setCheckUserSession }) => {
+const LoginForm = ({ setUsers }) => {
 
-  // console.log(setCheckUserSession)
+  const history = useHistory()
 
   const initialValues = {
     username: '',
@@ -30,13 +30,11 @@ const LoginForm = ({ setUsers, setCheckUserSession }) => {
       });
 
       if (response.ok) {
+        setTimeout(() => {
+          history.push(`/feed`)
+        }, 125)
         const user = await response.json();
-        // console.log(users);
-        // console.log(user);
         setUsers(user);
-        
-        // Redirect to "/feed" on successful login
-        // history.push("/feed");
 
       } else {
         const error = await response.json();
@@ -48,14 +46,6 @@ const LoginForm = ({ setUsers, setCheckUserSession }) => {
 
     setSubmitting(false);
   };
-
-  // let history = useHistory();
-
-  // function handleClick() {
-  //   history.push("/feed");
-  // }
-
-  // onClick={handleClick}
 
   return (
 
@@ -70,13 +60,13 @@ const LoginForm = ({ setUsers, setCheckUserSession }) => {
           <div>
             <h2>Sign in:</h2>
             <label htmlFor="username">Username: </label>
-            <Field type="username" id="username" name="username" placeholder="Enter username..." autoComplete="new-username" />
+            <Field type="username" className="username" name="username" placeholder="Enter username..." autoComplete="new-username" />
             <ErrorMessage name="username" component="div" />
           </div>
           <br/>
           <div>
             <label htmlFor="password">Password: </label>
-            <Field type="password" id="password" name="password" placeholder="Enter password..." autoComplete="new-password" />
+            <Field type="password" className="password" name="password" placeholder="Enter password..." autoComplete="new-password" />
             <ErrorMessage name="password" component="div" />
           </div>
           <br/>

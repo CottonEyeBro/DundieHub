@@ -4,9 +4,9 @@ function GroupProfile() {
 
 
     return (
-        <>
+        <div>
             <h1>Group Profile Page</h1>
-        </>
+        </div>
     );
 }
 
