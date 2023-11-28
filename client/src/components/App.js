@@ -5,7 +5,7 @@ import Login from "./Login";
 import Feed from "./Feed";
 import UserProfile from "./UserProfile";
 import GroupProfile from "./GroupProfile";
-import officeLogo from "/home/clindsley/Development/Code/phase-5/DundieHub-project/client/src/images/Office Logo.png"
+import officeLogo from "/home/clindsley/Development/Code/phase-5/DundieHub-project/client/src/images/Officelogo.jpg"
 import { Switch, Route, useLocation } from "react-router-dom";
 
 function App() {

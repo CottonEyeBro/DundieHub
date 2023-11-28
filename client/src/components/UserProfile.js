@@ -4,7 +4,7 @@ function UserProfile() {
 
 
     return (
-        <div>
+        <div className="user-profile">
             <h1>User Profile Page</h1>
         </div>
     );

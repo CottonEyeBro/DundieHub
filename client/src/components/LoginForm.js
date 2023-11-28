@@ -70,7 +70,7 @@ const LoginForm = ({ setUsers }) => {
             <ErrorMessage name="password" component="div" />
           </div>
           <br/>
-          <div>
+          <div className='signin-button'>
             <button type="submit">Sign In</button>
           </div>
         </div>

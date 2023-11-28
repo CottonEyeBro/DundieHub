@@ -98,7 +98,7 @@ const SignUpForm = ({ setUsers }) => {
             <ErrorMessage name="confirmPassword" component="div" />
           </div>
           <br />
-          <div>
+          <div className='signup-button'>
             <button type="submit">Sign Up</button>
           </div>
         </div>
