@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useUserContext } from "../UserContext";
+// import { useUserContext } from "../UserContext";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Login from "./Login";
@@ -7,18 +7,18 @@ import Feed from "./Feed";
 import UserProfile from "./UserProfile";
 import GroupProfile from "./GroupProfile";
 import officeLogo from "/home/clindsley/Development/Code/phase-5/DundieHub-project/client/src/images/Officelogo.jpg";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, /*useLocation*/ } from "react-router-dom";
 
 function App() {
 
-  const { users, setUsers } = useUserContext();
+  // const { users, setUsers } = useUserContext();
   const [checkUserSession, setCheckUserSession] = useState(null);
 
-  useEffect(() => {
-      fetch("/users")
-          .then((resp) => resp.json())
-          .then((data) => setUsers(data))
-  }, [])
+  // useEffect(() => {
+  //     fetch("/users")
+  //         .then((resp) => resp.json())
+  //         .then((data) => setUsers(data))
+  // }, [])
 
   useEffect(() => {
     // auto-login
@@ -31,7 +31,7 @@ function App() {
 
   const user_id = checkUserSession?.id
 
-  const location = useLocation()
+  // const location = useLocation()
 
   return (
     <>
@@ -44,7 +44,7 @@ function App() {
             </div>
           </Route>
           <Route exact path="/login">
-            <Login setUsers={setUsers} />
+            <Login />
           </Route>
           <Route exact path="/feed">
             <Feed />
