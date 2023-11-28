@@ -23,7 +23,6 @@ body {
   position: relative;
   text-align: center;
   bottom: -150px;
-  right: -175px;
   width: 1100px;
   border-radius: 16px;
 }
@@ -143,7 +142,6 @@ html, body {
   border-radius: 16px;
   position: relative;
   bottom: -120px;
-  right: -175px;
   font-size: x-large;
   background-color: #ccc;
 }
@@ -240,7 +238,8 @@ html, body {
   font-size: x-large;
   position: relative;
   color: white;
-  top: -186px;
+  top: -130px;
+  right: 60px;
 }
 
 .logout-button:hover {

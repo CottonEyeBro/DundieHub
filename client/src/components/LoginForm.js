@@ -30,11 +30,17 @@ const LoginForm = ({ setUsers }) => {
       });
 
       if (response.ok) {
+
+        const user = await response.json();
+        setUsers(user);
+
         setTimeout(() => {
           history.push(`/feed`)
         }, 125)
-        const user = await response.json();
-        setUsers(user);
+
+        setTimeout(() => {
+          window.location.reload()
+        }, 125)
 
       } else {
         const error = await response.json();
