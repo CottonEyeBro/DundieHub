@@ -204,7 +204,7 @@ function Feed() {
 
     return (
         <div className="main-feed">
-            <h1>Posts</h1>
+            <h1>Feed:</h1>
             <NewPostForm onSubmit={handleNewPost} />
             <div className="edit-form-div">
                 {showForm === true ? displayForm() : <></>}

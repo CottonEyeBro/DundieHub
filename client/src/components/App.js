@@ -5,15 +5,13 @@ import Login from "./Login";
 import Feed from "./Feed";
 import UserProfile from "./UserProfile";
 import GroupProfile from "./GroupProfile";
-import { Switch, Route } from "react-router-dom";
+import officeLogo from "/home/clindsley/Development/Code/phase-5/DundieHub-project/client/src/images/Officelogo.jpg"
+import { Switch, Route, useLocation } from "react-router-dom";
 
 function App() {
 
   const [users, setUsers] = useState(null)
   const [checkUserSession, setCheckUserSession] = useState(null)
-  // const [showLogin, setShowLogin] = useState(false)
-
-  // console.log(setUsers)
 
   useEffect(() => {
       fetch("/users")
@@ -30,30 +28,36 @@ function App() {
     });
   }, []);
 
+  const user_id = checkUserSession?.id
+
+  const location = useLocation()
+
   // if (!users) console.log(setCheckUserSession)
   // if (!users) return <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
 
   return (
     <>
       <div className="App">
-        <NavBar users={users} setUsers={setUsers} checkUserSession={checkUserSession} setCheckUserSession={setCheckUserSession} />
+        <NavBar users={users} setUsers={setUsers} />
         <Switch>
+          <Route exact path = "/">
+            <div className="hero-image">
+            <img src={officeLogo} alt="The Office logo" />
+            </div>
+          </Route>
           <Route exact path="/login">
-            <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />
+            <Login setUsers={setUsers} />
           </Route>
           <Route exact path="/feed">
             <Feed users={users} />
           </Route>
-          <Route exact path="/user-profile">
+          <Route exact path={`/${user_id}`}>
             <UserProfile />
           </Route>
           <Route exact path="/group-profile">
             <GroupProfile />
           </Route>
         </Switch>
-        <br></br>
-        {/* <img src="./images/Office Logo.png" alt="The Office logo" /> */}
-        <br></br>
         <Footer />
       </div>
     </>

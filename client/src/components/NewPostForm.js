@@ -10,7 +10,7 @@ const NewPostForm = ({ onSubmit }) => {
   };
 
   const validationSchema = Yup.object().shape({
-    content: Yup.string().required("Content is required"),
+    content: Yup.string(),
   });
 
   return (
@@ -20,10 +20,12 @@ const NewPostForm = ({ onSubmit }) => {
       onSubmit={onSubmit}
     >
       <Form>
-        <label htmlFor="content">Write a new post:</label>
-        <Field as="textarea" id="content" name="content" placeholder="Type your post here..." />
-        <ErrorMessage name="content" component="div" />
-        <button type="submit">Post</button>
+        <div className="new-post-form">
+          <label htmlFor="content"></label>
+          <Field as="textarea" id="content" name="content" placeholder="Type your post here..." />
+          <ErrorMessage name="content" component="div" />
+          <button className="post-button" type="submit">Post</button>
+        </div>
       </Form>
     </Formik>
   );

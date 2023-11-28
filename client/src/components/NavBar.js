@@ -1,7 +1,21 @@
-import React from "react";
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { NavLink, useHistory } from 'react-router-dom';
 
-function NavBar( {users, setUsers, checkUserSession, setCheckUserSession} ) {
+function NavBar( {users, setUsers} ) {
+
+    const [userSession, setUserSession] = useState(null)
+
+    const history = useHistory()
+
+    useEffect(() => {
+        fetch("/check_user_session").then((r) => {
+            if (r.ok) {
+                r.json().then(setUserSession);
+            }
+        });
+    }, []);
+
+    const clog = userSession ? true : false
 
     function handleLogoutClick() {
         
@@ -9,20 +23,33 @@ function NavBar( {users, setUsers, checkUserSession, setCheckUserSession} ) {
             .then((resp) => {
                 if (resp.ok) {
                     setUsers(null);
-          }
-        });
-      }
+                    history.push("/login");
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 125)
+                }
+            });
+    }
 
     return (
         <div className="main-header">  
-            <div className="header">
-                <NavLink className="logo" to="/">DundieHub</NavLink>
-                <p>Welcome to DundieHub!</p>
-            </div>
+        <div className="header">
+            <NavLink className="logo" to="/">DundieHub</NavLink>
+            <p>Welcome to DundieHub!</p>
+        </div>
             <div className="navbar">
                 <div className = "login">
-                    <NavLink to="/login">Sign in/Sign up</NavLink>
-                </div>
+                    {clog ? (
+                        <div className="logout-div">
+                            <button className="logout-button" onClick={handleLogoutClick}>Logout</button>
+                        </div>
+                    ) : (
+                        <div className="login-div">
+                            <button className="signin-signup-button"><NavLink to="/login">Sign in/Sign up</NavLink></button>
+                        </div>
+                    )}
+                </div>   
                 <div className="feed">
                     <NavLink to="/feed">Main Feed</NavLink>
                 </div>
@@ -31,9 +58,6 @@ function NavBar( {users, setUsers, checkUserSession, setCheckUserSession} ) {
                 </div>
                 <div className="group-profile">
                     <NavLink to="/group-profile">Group Profile</NavLink>
-                </div>
-                <div className="logout-button">
-                    <button onClick={handleLogoutClick}>Logout</button>
                 </div>
             </div>
         </div>

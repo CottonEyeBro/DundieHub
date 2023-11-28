@@ -1,9 +1,24 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const SignUpForm = ({ setUsers, setCheckUserSession }) => {
+const SignUpForm = ({ setUsers }) => {
+
+  const [userSession, setUserSession] = useState(null)
+
+  useEffect(() => {
+    fetch("/check_user_session").then((r) => {
+      if (r.ok) {
+        r.json().then(setUserSession);
+      }
+    });
+  }, []);
+
+  const user_id = userSession?.id
+
+  const history = useHistory()
+
   const initialValues = {
     name: '',
     username: '',
@@ -12,15 +27,12 @@ const SignUpForm = ({ setUsers, setCheckUserSession }) => {
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Required'),
-    username: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid username').required('Required'),
-    password: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid password').required('Required'),
+    name: Yup.string(),
+    username: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid username'),
+    password: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid password'),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
-      .required('Required'),
+      .oneOf([Yup.ref('password'), null], 'Passwords must match'),
   });
-
-  // let history = useHistory();
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
@@ -34,11 +46,11 @@ const SignUpForm = ({ setUsers, setCheckUserSession }) => {
       });
 
       if (response.ok) {
+        setTimeout(() => {
+          history.push(`/${user_id}`)
+        }, 125)
         const user = await response.json();
         setUsers(user);
-
-        // Redirect to "/feed" on successful signup
-        // history.push('/feed');
 
       } else {
         const error = await response.json();
@@ -50,12 +62,6 @@ const SignUpForm = ({ setUsers, setCheckUserSession }) => {
 
     setSubmitting(false);
   };
-
-  // function handleClick() {
-  //   history.push("/user-profile");
-  // }
-
-  // onClick={handleClick}
 
   return (
     <Formik
@@ -75,13 +81,13 @@ const SignUpForm = ({ setUsers, setCheckUserSession }) => {
           <br />
           <div>
             <label htmlFor="username">Username: </label>
-            <Field type="text" id="username" name="username" placeholder="Enter username..." autoComplete="new-username" />
+            <Field type="text" className="username" name="username" placeholder="Enter username..." autoComplete="new-username" />
             <ErrorMessage name="username" component="div" />
           </div>
           <br />
           <div>
             <label htmlFor="password">Password: </label>
-            <Field type="password" id="password" name="password" placeholder="Enter password..." autoComplete="new-password" />
+            <Field type="password" className="password" name="password" placeholder="Enter password..." autoComplete="new-password" />
             <ErrorMessage name="password" component="div" />
           </div>
           <br />
@@ -91,7 +97,7 @@ const SignUpForm = ({ setUsers, setCheckUserSession }) => {
             <ErrorMessage name="confirmPassword" component="div" />
           </div>
           <br />
-          <div>
+          <div className='signup-button'>
             <button type="submit">Sign Up</button>
           </div>
         </div>

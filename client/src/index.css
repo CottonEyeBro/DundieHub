@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
-/* .App {
+body {
   background-image: url("/home/clindsley/Development/Code/phase-5/DundieHub-project/client/public/images/Office Building Background.jpg");
-} */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow-x: hidden;
+  font-family: Helvetica, Arial, sans-serif;
+}
 
 html, body {
   height: 90vh;
@@ -13,6 +18,64 @@ html, body {
   flex-direction: column;
 }
 
+.hero-image {
+  text-align: center;
+}
+
+.hero-image img {
+  position: relative;
+  text-align: center;
+  bottom: -150px;
+  width: 1100px;
+  border-radius: 16px;
+}
+
+/* .main-feed,
+.user-profile,
+.group-profile {
+  background: white;
+} */
+
+.main-feed {
+  margin: 15px;
+}
+
+.new-post-form {
+  text-align: center;
+}
+
+.post-button {
+  position: relative;
+  width: 120px;
+  height: 60px;
+  border: 3.5px solid black;
+  margin-left: 15px;
+  font-size: x-large;
+  border-radius: 36px;
+  background-color: #27323A;
+  color: white;
+  top: -42px;
+}
+
+.post-button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.post-button:active {
+  cursor: pointer;
+  background-color: #818181;
+}
+
+#content {
+  border: 4px solid black;
+  border-radius: 16px;
+  width: 800px;
+  height: 90px;
+  font-size: xx-large;
+  padding-left: 15px;
+}
+
 .main-header {
   width: 100%;
   padding: 20px;
@@ -21,12 +84,17 @@ html, body {
   color: white;
 }
 
+.header p {
+  position: relative;
+  left: 59px;
+}
+
 .navbar a:link {
   color: rgb(0, 183, 255);
 }
 
 .navbar a:visited {
-  color: rgb(228, 86, 197);
+  color: white;
 }
 
 .logo {
@@ -45,7 +113,7 @@ html, body {
 }
 
 .postcontentbox {
-  background-color: #282c2f73;
+  background-color: #9EA0A1;
   border: 6px solid #282C2F;
   padding: 15px;
   border-radius: 60px 60px 60px 0px;
@@ -90,8 +158,12 @@ html, body {
   color: rgb(0, 183, 255);
 }
 
+.contacts a:hover {
+  text-decoration: none;
+}
+
 .contacts a:visited {
-  color: rgb(228, 86, 197);
+  color: rgb(0, 183, 255);
 }
 
 .about p {
@@ -106,17 +178,121 @@ html, body {
 
 .signin,
 .signup {
-  text-align: center;
-  border: 2px solid black;
+  border: 4px solid black;
   flex-grow: 1;
   margin: 10px;
   padding-bottom: 20px;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 16px;
+  position: relative;
+  bottom: -120px;
+  font-size: x-large;
+  background-color: #ccc;
+}
+
+.signin label,
+.signup label {
+  text-align: justify;
+}
+
+.signin h2,
+.signup h2 {
+  text-align: center;
+}
+
+.signin-button,
+.signup-button {
+  text-align: center;
+}
+
+.signin button,
+.signup button {
+  width: 90px;
+  height: 40px;
+  border: 3px solid black;
+  border-radius: 16px;
+  font-size: large;
+}
+
+.signin button:hover,
+.signup button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.signin button:active,
+.signup button:active {
+  cursor: pointer;
+  text-decoration: underline;
+  background-color: #818181;
+}
+
+.username,
+.password,
+#name,
+#confirmPassword {
+  border-radius: 16px;
+  border: 2px solid black;
+  width: 200px;
+  height: 35px;
+  font-size: medium;
+  letter-spacing: .08rem;
+  padding-left: 15px;
 }
 
 .user-info {
   display: flex;
   align-items: center;
+}
+
+.signin-signup-button {
+  float: right;
+  margin-right: 60px;
+  padding: 20px;
+  background-color: #27323A;
+  border: 3px solid black;
+  border-radius: 16px;
+  font-size: x-large;
+  position: relative;
+  top: -130px;
+}
+
+.signin-signup-button:hover {
+  text-decoration: underline;
+  color: white;
+  cursor: pointer;
+}
+
+.signin-signup-button:active {
+  cursor: pointer;
+  background-color: #818181;
+}
+
+.login a {
+  text-decoration: none;
+  color: white;
+}
+
+.logout-button {
+  float: right;
+  padding: 20px;
+  background-color: #27323A;
+  border: 3px solid black;
+  border-radius: 16px;
+  font-size: x-large;
+  position: relative;
+  color: white;
+  top: -130px;
+  right: 60px;
+}
+
+.logout-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.logout-button:active {
+  cursor: pointer;
+  background-color: #818181;
 }
