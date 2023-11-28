@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useHistory } from 'react-router-dom';
+import { useUserContext } from "../UserContext";
 
-function NavBar( {users, setUsers} ) {
+function NavBar() {
 
     const [userSession, setUserSession] = useState(null)
+    const { users, setUsers } = useUserContext();
 
     const history = useHistory()
 

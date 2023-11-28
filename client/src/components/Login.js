@@ -1,8 +1,11 @@
 import React from "react";
+import { useUserContext } from "../UserContext";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm"
 
-function Login( {setUsers} ) {
+function Login() {
+
+    const { users, setUsers } = useUserContext();
 
     return (
         <div className="login_page">
