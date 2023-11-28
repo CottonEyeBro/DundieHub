@@ -27,12 +27,11 @@ const SignUpForm = ({ setUsers }) => {
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Required'),
-    username: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid username').required('Required'),
-    password: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid password').required('Required'),
+    name: Yup.string(),
+    username: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid username'),
+    password: Yup.string().matches(/^[a-zA-Z0-9]*$/, 'Invalid password'),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
-      .required('Required'),
+      .oneOf([Yup.ref('password'), null], 'Passwords must match'),
   });
 
   const handleSubmit = async (values, { setSubmitting }) => {

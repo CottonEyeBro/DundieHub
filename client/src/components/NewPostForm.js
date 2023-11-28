@@ -10,7 +10,7 @@ const NewPostForm = ({ onSubmit }) => {
   };
 
   const validationSchema = Yup.object().shape({
-    content: Yup.string().required("Content is required"),
+    content: Yup.string(),
   });
 
   return (
