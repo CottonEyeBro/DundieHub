@@ -133,6 +133,7 @@ body {
   margin-top: 15px;
   margin-bottom: 15px;
   padding-left: 15px;
+  padding-bottom: 15px;
   font-size: large;
 }
 
@@ -286,15 +287,6 @@ body {
   color: white;
 }
 
-/* .navbar a:link {
-  color: rgb(0, 183, 255);
-}
-
-.navbar a:visited {
-  color: white;
-  text-decoration: none;
-} */
-
 .signed-in-navbar a {
   text-decoration: none;
   color: white;
@@ -399,6 +391,54 @@ body {
 }
 
 .group-profile-button:active {
+  cursor: pointer;
+  background-color: #818181;
+}
+
+/* ====================================postcardbuttons==================================== */
+
+.postcardbuttons {
+  width: fit-content;
+  height: 35px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 2px solid black;
+  border-radius: 8px;
+  font-size: medium;
+}
+
+.postcardbuttons:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.postcardbuttons:active {
+  cursor: pointer;
+  background-color: #818181;
+}
+
+/* ====================================commentcardbuttons==================================== */
+
+.commentcardbuttons {
+  width: fit-content;
+  height: 35px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 2px solid black;
+  border-radius: 8px;
+  font-size: medium;
+}
+
+.commentcardbuttons:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.commentcardbuttons:active {
   cursor: pointer;
   background-color: #818181;
 }
