@@ -78,7 +78,7 @@ function Feed() {
                             {showForm === true ? displayForm() : <></>}
                         </div>
                         <p><em>Posted: {post.posted_at}</em></p>
-                        {/* <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button> */}
+                        <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button>
                         <button className="postcardbuttons" onClick={() => editPost(post)}>Edit</button>
                         <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button>
                         {post.comments.length > 0 ? 
@@ -90,8 +90,8 @@ function Feed() {
                                     <h5>&lt;{comment.user.username}&gt;</h5>
                                     <p>{comment.content}</p>
                                     <p><em>{comment.commented_at}</em></p>
-                                    {/* <button className="commentcardbuttons" onClick={() => editComment(comment)}>Edit</button>
-                                    <button className="commentcardbuttons" onClick={() => deleteComment(comment)}>Delete</button> */}
+                                    <button className="commentcardbuttons" onClick={() => editComment(comment)}>Edit</button>
+                                    <button className="commentcardbuttons" onClick={() => deleteComment(comment)}>Delete</button>
                                 </div>
                                 
                             ))}
@@ -105,10 +105,10 @@ function Feed() {
         return postCards
     }
 
-    // function addComment(post) {
-    //     console.log("add comment button selected")
-    //     console.log(post)
-    // }
+    function addComment(post) {
+        console.log("add comment button selected")
+        console.log(post)
+    }
 
     function deletePost(post) {
         console.log("delete button selected")
@@ -125,15 +125,15 @@ function Feed() {
         setPosts(updatedPosts)
     }
 
-    // function editComment(comment) {
-    //     console.log("edit button selected")
-    //     console.log(comment)
-    // }
+    function editComment(comment) {
+        console.log("edit button selected")
+        console.log(comment)
+    }
 
-    // function deleteComment(comment) {
-    //     console.log("delete button selected")
-    //     console.log(comment.id)
-    // }
+    function deleteComment(comment) {
+        console.log("delete button selected")
+        console.log(comment.id)
+    }
 
     function editPost(post) {
         console.log("edit button selected")
@@ -168,7 +168,7 @@ function Feed() {
         })
         .then(resp => resp.json())
         .then(updatedPost => {
-            console.log(updatedPost)
+            // console.log(updatedPost)
             const updatedPosts = posts.map(originalPost => {
                 if (originalPost.id === updatedPost.id) {
                     return updatedPost
@@ -185,7 +185,7 @@ function Feed() {
     function displayForm() {
         return (
             <div className="editcard">
-                <h3> Edit Post </h3>
+                <h3> Edit Post: </h3>
                 <form onSubmit={handleEdit} className="edit-form">
                     <label htmlFor="content"></label>
                     <input
