@@ -7,7 +7,7 @@ import Feed from "./Feed";
 import UserProfile from "./UserProfile";
 import GroupProfile from "./GroupProfile";
 import officeLogo from "/home/clindsley/Development/Code/phase-5/DundieHub-project/client/src/images/Officelogo.jpg";
-import { Switch, Route, /*useLocation*/ } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
 
@@ -31,7 +31,7 @@ function App() {
 
   const user_id = checkUserSession?.id
 
-  // const location = useLocation()
+  // console.log(user_id)
 
   return (
     <>

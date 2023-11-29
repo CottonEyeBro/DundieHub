@@ -74,6 +74,9 @@ function Feed() {
                             <h3><em>&lt;{post.user.username}&gt;</em></h3>
                         </div>
                         <p>{post.content}</p>
+                        <div className="edit-form-div">
+                            {showForm === true ? displayForm() : <></>}
+                        </div>
                         <p><em>Posted: {post.posted_at}</em></p>
                         {/* <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button> */}
                         <button className="postcardbuttons" onClick={() => editPost(post)}>Edit</button>
@@ -184,7 +187,7 @@ function Feed() {
             <div className="editcard">
                 <h3> Edit Post </h3>
                 <form onSubmit={handleEdit} className="edit-form">
-                    <label htmlFor="content">Content: </label>
+                    <label htmlFor="content"></label>
                     <input
                         type="text"
                         name="content"
@@ -206,9 +209,6 @@ function Feed() {
         <div className="main-feed">
             <h1>Feed:</h1>
             <NewPostForm onSubmit={handleNewPost} />
-            <div className="edit-form-div">
-                {showForm === true ? displayForm() : <></>}
-            </div>
             <div className="card">
                 {viewPosts()}
             </div>

@@ -34,6 +34,8 @@ function NavBar() {
             });
     }
 
+    const user_id = userSession?.id
+
     return (
         <div className="main-header">  
         <div className="header">
@@ -56,7 +58,7 @@ function NavBar() {
                     <NavLink to="/feed">Main Feed</NavLink>
                 </div>
                 <div className="user-profile">
-                    <NavLink to="/user-profile">User Profile</NavLink>
+                    <NavLink to={`/${user_id}`}>User Profile</NavLink>
                 </div>
                 <div className="group-profile">
                     <NavLink to="/group-profile">Group Profile</NavLink>
