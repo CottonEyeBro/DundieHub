@@ -188,7 +188,7 @@ function Feed() {
                 <h3> Edit Post: </h3>
                 <form onSubmit={handleEdit} className="edit-form">
                     <label htmlFor="content"></label>
-                    <input
+                    <textarea
                         type="text"
                         name="content"
                         value={formData.content}
@@ -198,8 +198,8 @@ function Feed() {
                     />
                     <br/>
                     <br/>
-                    <input className="buttons" type="submit" value="Save" />
-                    <input className="buttons" type="button" value="Cancel" onClick={() => setShowForm(false)} />
+                    <input className="edit-buttons" type="submit" value="Save" />
+                    <input className="edit-buttons" type="button" value="Cancel" onClick={() => setShowForm(false)} />
                 </form>
             </div>
         )

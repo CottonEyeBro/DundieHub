@@ -137,6 +137,41 @@ body {
   font-size: large;
 }
 
+/* ==========================================edit-buttons===================================== */
+
+.edit-buttons {
+  width: fit-content;
+  height: 35px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 2px solid black;
+  border-radius: 8px;
+  font-size: medium;
+}
+
+.edit-buttons:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.edit-buttons:active {
+  cursor: pointer;
+  background-color: #818181;
+}
+
+.input-text {
+  border: 4px solid black;
+  border-radius: 16px;
+  width: 800px;
+  height: 90px;
+  font-size: x-large;
+  padding-left: 15px;
+}
+
+/* ================================================footer styling===================================== */
+
 .footer-absolute {
   width: 100%;
   padding: 20px;
