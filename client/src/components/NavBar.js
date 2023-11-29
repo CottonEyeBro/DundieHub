@@ -53,15 +53,23 @@ function NavBar() {
                             <button className="signin-signup-button"><NavLink to="/login">Sign in/Sign up</NavLink></button>
                         </div>
                     )}
-                </div>   
-                <div className="feed">
-                    <NavLink to="/feed">Main Feed</NavLink>
                 </div>
-                <div className="user-profile">
-                    <NavLink to={`/${user_id}`}>User Profile</NavLink>
-                </div>
-                <div className="group-profile">
-                    <NavLink to="/group-profile">Group Profile</NavLink>
+                <div className="signed-in-navbar">
+                    {clog ? (
+                        <>
+                            <div className="group-profile">
+                                <button className="group-profile-button"><NavLink to="/group-profile">Group Profile</NavLink></button>
+                            </div>
+                            <div className="user-profile">
+                                <button className="user-profile-button"><NavLink to={`/${user_id}`}>User Profile</NavLink></button>
+                            </div>
+                            <div className="feed">
+                                <button className="main-feed-button"><NavLink to="/feed">Main Feed</NavLink></button>
+                            </div>
+                        </>
+                    ) : (
+                        <></>
+                    )}
                 </div>
             </div>
         </div>
