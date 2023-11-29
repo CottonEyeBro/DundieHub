@@ -7,9 +7,11 @@ body {
   background-position: center;
   overflow-x: hidden;
   font-family: Helvetica, Arial, sans-serif;
+  background-attachment: fixed;
 }
 
-html, body {
+html, 
+body {
   height: 90vh;
   width: 100%;
   margin: 0;
@@ -29,12 +31,6 @@ html, body {
   width: 1100px;
   border-radius: 16px;
 }
-
-/* .main-feed,
-.user-profile,
-.group-profile {
-  background: white;
-} */
 
 .main-feed {
   margin: 15px;
