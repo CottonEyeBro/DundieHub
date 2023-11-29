@@ -40,6 +40,13 @@ html, body {
   margin: 15px;
 }
 
+.main-feed h1 {
+  position: relative;
+  margin: 20px;
+  top: 155px;
+  left: 15px;
+}
+
 .new-post-form {
   text-align: center;
 }
@@ -117,8 +124,9 @@ html, body {
   border: 6px solid #282C2F;
   padding: 15px;
   border-radius: 60px 60px 60px 0px;
-  margin: 20px;
-  width: 95vw;
+  margin: 30px;
+  width: 90vw;
+  font-size: larger;
 }
 
 .postcontentbox img {
@@ -135,6 +143,7 @@ html, body {
   margin-top: 15px;
   margin-bottom: 15px;
   padding-left: 15px;
+  font-size: large;
 }
 
 .footer-absolute {
@@ -243,7 +252,19 @@ html, body {
 
 .user-info {
   display: flex;
-  align-items: center;
+}
+
+.user-info h2 {
+  position: relative;
+  margin: 10px;
+}
+
+.user-info h3 {
+  position: relative;
+  top: 40px;
+  left: -185px;
+  color: #51565a;
+  margin-left: 15px;
 }
 
 .signin-signup-button {

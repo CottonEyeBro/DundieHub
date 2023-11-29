@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
+// import { useUserContext } from "../UserContext";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Login from "./Login";
 import Feed from "./Feed";
 import UserProfile from "./UserProfile";
 import GroupProfile from "./GroupProfile";
-import officeLogo from "/home/clindsley/Development/Code/phase-5/DundieHub-project/client/src/images/Officelogo.jpg"
-import { Switch, Route, useLocation } from "react-router-dom";
+import officeLogo from "/home/clindsley/Development/Code/phase-5/DundieHub-project/client/src/images/Officelogo.jpg";
+import { Switch, Route, /*useLocation*/ } from "react-router-dom";
 
 function App() {
 
-  const [users, setUsers] = useState(null)
-  const [checkUserSession, setCheckUserSession] = useState(null)
+  // const { users, setUsers } = useUserContext();
+  const [checkUserSession, setCheckUserSession] = useState(null);
 
-  useEffect(() => {
-      fetch("/users")
-          .then((resp) => resp.json())
-          .then((data) => setUsers(data))
-  }, [])
+  // useEffect(() => {
+  //     fetch("/users")
+  //         .then((resp) => resp.json())
+  //         .then((data) => setUsers(data))
+  // }, [])
 
   useEffect(() => {
     // auto-login
@@ -30,15 +31,12 @@ function App() {
 
   const user_id = checkUserSession?.id
 
-  const location = useLocation()
-
-  // if (!users) console.log(setCheckUserSession)
-  // if (!users) return <Login setUsers={setUsers} setCheckUserSession={setCheckUserSession} />;
+  // const location = useLocation()
 
   return (
     <>
       <div className="App">
-        <NavBar users={users} setUsers={setUsers} />
+        <NavBar />
         <Switch>
           <Route exact path = "/">
             <div className="hero-image">
@@ -46,10 +44,10 @@ function App() {
             </div>
           </Route>
           <Route exact path="/login">
-            <Login setUsers={setUsers} />
+            <Login />
           </Route>
           <Route exact path="/feed">
-            <Feed users={users} />
+            <Feed />
           </Route>
           <Route exact path={`/${user_id}`}>
             <UserProfile />
