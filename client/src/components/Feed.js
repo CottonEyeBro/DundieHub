@@ -5,9 +5,15 @@ function Feed() {
 
 
     const [posts, setPosts] = useState([])
+    const [comments, setComments] = useState([])
     const [showForm, setShowForm] = useState(false)
     const [editPostContent, setEditPostContent] = useState([])
-    const [editPostId, setEditPostId] = useState("")
+    const [editingPostId, setEditingPostId] = useState(null);
+    // const [editPostId, setEditPostId] = useState("")
+
+
+
+
 
     // console.log(showForm)
     // console.log(editPostContent)
@@ -16,7 +22,7 @@ function Feed() {
     useEffect(() => {
         fetch("/posts")
             .then((resp) => resp.json())
-            .then((data) =>{ 
+            .then((data) => { 
                 setPosts(data)
                 setEditPostContent(data)
             })
@@ -64,6 +70,8 @@ function Feed() {
             // Sort comments by the 'commented_at' timestamp in ascending order
             const sortedComments = post.comments.sort((a, b) => new Date(a.commented_at) - new Date(b.commented_at));
 
+            // console.log(post)
+
             return (
 
                 <div key={post.id} className="post-card">
@@ -75,11 +83,11 @@ function Feed() {
                         </div>
                         <p>{post.content}</p>
                         <div className="edit-form-div">
-                            {showForm === true ? displayForm() : <></>}
+                            {editingPostId === post.id && showForm === true ? displayForm() : <></>}
                         </div>
                         <p><em>Posted: {post.posted_at}</em></p>
                         <button className="postcardbuttons" onClick={() => addComment(post)}>Add comment</button>
-                        <button className="postcardbuttons" onClick={() => editPost(post)}>Edit</button>
+                        <button className="postcardbuttons" id="edit-post-button" onClick={() => editPost(post)}>Edit</button>
                         <button className="postcardbuttons" onClick={() => deletePost(post)}>Delete</button>
                         {post.comments.length > 0 ? 
                         <div className="commentcontentbox">
@@ -133,12 +141,24 @@ function Feed() {
     function deleteComment(comment) {
         console.log("delete button selected")
         console.log(comment.id)
+        fetch(`/comments/${comment.id}`, {
+            method: "DELETE"
+        })
+        const updatedComments = []
+        comments.forEach(item => {
+            if (item.id !== comment.id) {
+                updatedComments.push(item)
+            }
+        })
+        setComments(updatedComments)
+        // Reloads page to show that comment has been successfully deleted
+        window.location.reload()
     }
 
     function editPost(post) {
         console.log("edit button selected")
-        // console.log(post.id)
-        setEditPostId(post.id)
+        console.log(post.id)
+        setEditingPostId(post.id)
         setShowForm(true)
         setFormData({
             content: post.content
@@ -160,15 +180,15 @@ function Feed() {
 
     function handleEdit(e) {
         e.preventDefault()
-        //console.log(editPostContent)
-        fetch(`/posts/${editPostId}`, {
+        console.log(editingPostId)
+        fetch(`/posts/${editingPostId}`, {
             method:"PATCH",
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify(formData)
         })
         .then(resp => resp.json())
         .then(updatedPost => {
-            // console.log(updatedPost)
+            console.log(updatedPost)
             const updatedPosts = posts.map(originalPost => {
                 if (originalPost.id === updatedPost.id) {
                     return updatedPost
