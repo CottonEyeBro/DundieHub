@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { useUserContext } from "../UserContext";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Login from "./Login";
@@ -11,14 +10,7 @@ import { Switch, Route } from "react-router-dom";
 
 function App() {
 
-  // const { users, setUsers } = useUserContext();
   const [checkUserSession, setCheckUserSession] = useState(null);
-
-  // useEffect(() => {
-  //     fetch("/users")
-  //         .then((resp) => resp.json())
-  //         .then((data) => setUsers(data))
-  // }, [])
 
   useEffect(() => {
     // auto-login
