@@ -20,7 +20,7 @@ class User(db.Model, SerializerMixin): # =======================================
     username = db.Column(db.String, unique = True)
     _password_hash = db.Column(db.String)
     joined_on = db.Column(db.DateTime, default = datetime.utcnow)
-    profile_image_url = db.Column(db.String)
+    profile_image_url = db.Column(db.String, default = './images/DMLogo.png')
 
 
     # Relationships
