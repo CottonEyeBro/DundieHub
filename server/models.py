@@ -11,7 +11,8 @@ class User(db.Model, SerializerMixin): # =======================================
     __tablename__ = 'users'
 
     # Serialize Rules
-    serialize_rules = ('-user_groups.user', '-user_groups.group', '-posts.user', '-comments.user', '-comments.post', '-posts.comments')
+    serialize_rules = ('-user_groups.user', '-posts.user', '-comments.user', '-comments.post', '-posts.comments')
+    # '-user_groups.group',
 
     # Build Table Columns
     id = db.Column(db.Integer, primary_key = True)

@@ -483,12 +483,13 @@ body {
 .group-profile-div {
   background-color: #9EA0A1;
   border: 4px solid black;
+  border-radius: 16px;
   position: absolute;
   left: 850px;
   top: 420px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 .group-profile h1{
@@ -503,4 +504,67 @@ body {
 
 .kevin-chili {
   width: 180px;
+}
+
+/* =========================================================user-profile==================================================== */
+
+.user-profile-div {
+  background-color: #9EA0A1;
+  width: 425px;
+  position: relative;
+  text-align: center;
+  margin-left: 20px;
+  border: 4px solid black;
+  border-radius: 16px;
+  top: 100px;
+  font-size: large;
+}
+
+.user-profile-div strong {
+  text-decoration: underline;
+}
+
+.user-photo {
+  border: 2px solid black;
+  border-radius: 16px;
+}
+
+.user-posts {
+  width: 900px;
+  position: relative;
+  text-align: center;
+  margin-left: 20px;
+  left: 715px;
+  top: -510px;
+}
+
+.user-post-card {
+  background-color: #9EA0A1;
+  border: 4px solid black;
+  border-radius: 16px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  font-size: large;
+}
+
+.user-groups{
+  background-color: #9EA0A1;
+  width: 500px;
+  position: absolute;
+  text-align: center;
+  margin-left: 20px;
+  border: 4px solid black;
+  border-radius: 16px;
+  left: 1960px;
+  top: 270px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  font-size: large;
+}
+
+.user-groups .group-title {
+  text-decoration: underline;
 }
