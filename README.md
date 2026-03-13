@@ -192,8 +192,6 @@ Distributed under the Learn.co Educational Content License. See `LICENSE.md` for
 <!-- CONTACT -->
 ## Contact
 
-Cooper Lindsley - cooper.lindsley@yahoo.com
-
 Project Link: [https://github.com/CottonEyeBro/DundieHub](https://github.com/CottonEyeBro/DundieHub)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -226,3 +224,4 @@ Project Link: [https://github.com/CottonEyeBro/DundieHub](https://github.com/Cot
 [Javascript-url]: https://www.javascript.com/
 [git-scm]: https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white
 [git-url]: https://git-scm.com/
+
