@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "app": {
+      "root": ".",
+      "framework": "flask",
+      "entrypoint": "wsgi:app"
+    },
+    "client": {
+      "root": "client",
+      "framework": "create-react-app"
+    }
+  },
+  "rewrites": [
+    { "source": "/posts", "destination": { "service": "app" } },
+    { "source": "/posts/(.*)", "destination": { "service": "app" } },
+    { "source": "/comments", "destination": { "service": "app" } },
+    { "source": "/comments/(.*)", "destination": { "service": "app" } },
+    { "source": "/users", "destination": { "service": "app" } },
+    { "source": "/users/(.*)", "destination": { "service": "app" } },
+    { "source": "/user_groups", "destination": { "service": "app" } },
+    { "source": "/user_groups/(.*)", "destination": { "service": "app" } },
+    { "source": "/groups", "destination": { "service": "app" } },
+    { "source": "/groups/(.*)", "destination": { "service": "app" } },
+    { "source": "/signup", "destination": { "service": "app" } },
+    { "source": "/user_login", "destination": { "service": "app" } },
+    { "source": "/logout", "destination": { "service": "app" } },
+    { "source": "/check_user_session", "destination": { "service": "app" } },
+    { "source": "/(.*)", "destination": { "service": "client" } }
+  ]
+}
