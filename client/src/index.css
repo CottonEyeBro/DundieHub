@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 body {
-  background-image: url("/home/clindsley/Development/Code/phase-5/DundieHub-project/client/public/images/Office Building Background.jpg");
+  background-image: url("./images/Office Building Background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
