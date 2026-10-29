@@ -64,3 +64,13 @@ __pycache__
 instance
 .vscode
 package-lock.json
+
+# React production build created for Vercel
+/public
+.neon
+
+# Neon connection strings
+.env
+.env.local
+.env.*.local
+.env.local

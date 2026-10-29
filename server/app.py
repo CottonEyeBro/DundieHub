@@ -2,8 +2,9 @@
 
 from config import app
 from models import db, User
-from flask import Flask, make_response, request, session
+from flask import Flask, make_response, request, send_file, session
 from datetime import datetime
+import os
 
 from routes.user_routes import users, user_by_id
 from routes.user_group_routes import user_groups, user_group_by_id
@@ -11,10 +12,28 @@ from routes.group_routes import groups, group_by_id
 from routes.post_routes import posts, post_by_id
 from routes.comment_routes import comments, comment_by_id
 
-# Main Server View:
+PUBLIC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'public'))
+
+def send_react_app():
+    index_path = os.path.join(PUBLIC_DIR, 'index.html')
+    if os.path.exists(index_path):
+        return send_file(index_path)
+    return '<h1>Welcome to the DundieHub Server!</h1>'
+
+# The React app owns the homepage once it has been built into /public.
 @app.route('/')
 def index():
-    return '<h1>Welcome to the DundieHub Server!</h1>'
+    return send_react_app()
+
+@app.errorhandler(404)
+def react_page(error):
+    # Browser pages such as /feed and /login are not API routes.
+    # Send the React app so those pages still open on Vercel.
+    if request.method == 'GET':
+        index_path = os.path.join(PUBLIC_DIR, 'index.html')
+        if os.path.exists(index_path):
+            return send_file(index_path)
+    return make_response({'error': 'Not found'}, 404)
 
 # Non-RESTful Routing:
 @app.route('/signup', methods = ['POST'])
@@ -61,8 +80,8 @@ def signup():
 @app.route('/check_user_session', methods = ['GET'])
 def check_session():
     # check current session
-    user_id = session['user_id']
-    user = User.query.filter(User.id == user_id).first()
+    user_id = session.get('user_id')
+    user = User.query.filter(User.id == user_id).first() if user_id else None
 
     if user:
         response = make_response(

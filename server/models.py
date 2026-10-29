@@ -11,7 +11,7 @@ class User(db.Model, SerializerMixin): # =======================================
     __tablename__ = 'users'
 
     # Serialize Rules
-    serialize_rules = ('-user_groups.user', '-posts.user', '-comments.user', '-comments.post', '-posts.comments')
+    serialize_rules = ('-user_groups.user', '-posts.user', '-comments.user', '-comments.post', '-posts.comments', '-_password_hash')
     # '-user_groups.group',
 
     # Build Table Columns
@@ -20,7 +20,7 @@ class User(db.Model, SerializerMixin): # =======================================
     username = db.Column(db.String, unique = True)
     _password_hash = db.Column(db.String)
     joined_on = db.Column(db.DateTime, default = datetime.utcnow)
-    profile_image_url = db.Column(db.String, default = './images/DMLogo.png')
+    profile_image_url = db.Column(db.String, default = '/images/DMLogo.png')
 
 
     # Relationships
