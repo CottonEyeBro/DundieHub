@@ -23,12 +23,10 @@ function App() {
 
   const user_id = checkUserSession?.id
 
-  // console.log(user_id)
-
   return (
-    <>
-      <div className="App">
-        <NavBar />
+    <div className="app-shell">
+      <NavBar />
+      <main className="page-content">
         <Switch>
           <Route exact path = "/">
             <div className="hero-image">
@@ -48,9 +46,9 @@ function App() {
             <GroupProfile />
           </Route>
         </Switch>
-        <Footer />
-      </div>
-    </>
+      </main>
+      <Footer />
+    </div>
   );
 }
 

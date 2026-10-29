@@ -12,25 +12,49 @@ body {
 
 html, 
 body {
-  height: 90vh;
+  min-height: 100vh;
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+.page-content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
 .hero-image {
-  text-align: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 0;
+  padding: 32px 24px;
+  box-sizing: border-box;
 }
 
 .hero-image img {
-  position: absolute;
-  text-align: center;
-  bottom: 485px;
-  left: 720px;
-  width: 1100px;
+  max-width: min(980px, 86vw);
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   border-radius: 16px;
+  display: block;
 }
 
 .main-feed {
@@ -38,10 +62,7 @@ body {
 }
 
 .main-feed h1 {
-  position: relative;
-  margin: 20px;
-  top: 155px;
-  left: 15px;
+  margin: 20px 20px 20px 35px;
 }
 
 .new-post-form {
@@ -82,16 +103,48 @@ body {
 
 .main-header {
   width: 100%;
-  padding-top: 30px;
-  padding-bottom: 20px;
-  padding-left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 20px 30px;
   background-color: #282C2F;
   color: white;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .header p {
-  position: relative;
-  left: 59px;
+  margin: 8px 0 0 8px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.navbar .signed-in-navbar,
+.navbar .login,
+.navbar .login-div,
+.navbar .logout-div,
+.navbar .feed,
+.navbar .user-profile,
+.navbar .group-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .logo {
@@ -172,21 +225,15 @@ body {
 
 /* ================================================footer styling===================================== */
 
-.footer-absolute {
+.site-footer {
   width: 100%;
-  padding: 20px;
+  padding: 20px 30px;
   background-color: #282C2F;
   color: white;
-  position: absolute;
-}
-
-.footer-fixed {
-  width: 100%;
-  padding: 20px;
-  background-color: #282C2F;
-  color: white;
-  position: fixed;
-  bottom: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
 }
 
 .contacts a:link {
@@ -206,25 +253,26 @@ body {
 }
 
 .login_page {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 40px 24px;
+  box-sizing: border-box;
 }
 
 .signin,
 .signup {
   border: 4px solid black;
-  flex-grow: 1;
-  margin: 10px;
-  padding-bottom: 20px;
-  padding-left: 15px;
-  padding-right: 15px;
+  margin: 0;
+  padding: 8px 20px 24px;
   border-radius: 16px;
-  position: relative;
-  bottom: -120px;
-  left: 120px;
   font-size: x-large;
   background-color: #ccc;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .signin label,
@@ -294,16 +342,18 @@ body {
   margin-left: 15px;
 }
 
-.signin-signup-button {
-  float: right;
-  margin-right: 60px;
-  padding: 20px;
+.signin-signup-button,
+.logout-button,
+.main-feed-button,
+.user-profile-button,
+.group-profile-button {
+  padding: 14px 18px;
   background-color: #27323A;
   border: 3px solid black;
   border-radius: 16px;
   font-size: x-large;
-  position: relative;
-  top: -130px;
+  color: white;
+  white-space: nowrap;
 }
 
 .signin-signup-button:hover {
@@ -330,17 +380,7 @@ body {
 /* ====================================logout-button==================================== */
 
 .logout-button {
-  float: right;
-  padding: 20px;
-  margin-left: 15px;
-  background-color: #27323A;
-  border: 3px solid black;
-  border-radius: 16px;
-  font-size: x-large;
-  position: relative;
   color: white;
-  top: -130px;
-  right: 60px;
 }
 
 .logout-button:hover {
@@ -356,16 +396,7 @@ body {
 /* ====================================main-feed-button==================================== */
 
 .main-feed-button {
-  float: right;
-  padding: 20px;
-  background-color: #27323A;
-  border: 3px solid black;
-  border-radius: 16px;
-  font-size: x-large;
-  position: relative;
   color: white;
-  top: -130px;
-  right: 60px;
 }
 
 .main-feed-button:hover {
@@ -381,17 +412,7 @@ body {
 /* ====================================user-profile-button==================================== */
 
 .user-profile-button {
-  float: right;
-  padding: 20px;
-  margin-left: 15px;
-  background-color: #27323A;
-  border: 3px solid black;
-  border-radius: 16px;
-  font-size: x-large;
-  position: relative;
   color: white;
-  top: -130px;
-  right: 60px;
 }
 
 .user-profile-button:hover {
@@ -407,17 +428,7 @@ body {
 /* ====================================group-profile-button==================================== */
 
 .group-profile-button {
-  float: right;
-  padding: 20px;
-  margin-left: 15px;
-  background-color: #27323A;
-  border: 3px solid black;
-  border-radius: 16px;
-  font-size: x-large;
-  position: relative;
   color: white;
-  top: -130px;
-  right: 60px;
 }
 
 .group-profile-button:hover {
@@ -480,16 +491,24 @@ body {
 
 /* ====================================Group Profile Page Styling==================================== */
 
+.group-profile {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
 .group-profile-div {
   background-color: #9EA0A1;
   border: 4px solid black;
   border-radius: 16px;
-  position: absolute;
-  left: 850px;
-  top: 420px;
+  max-width: 720px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .group-profile h1{
@@ -508,18 +527,25 @@ body {
 
 /* =========================================================user-profile==================================================== */
 
+.userprofilepage {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr) minmax(240px, 360px);
+  gap: 24px;
+  align-items: start;
+  padding: 32px 24px 48px;
+  box-sizing: border-box;
+}
+
 .user-profile-div {
   background-color: #9EA0A1;
-  width: fit-content;
-  padding-left: 65px;
-  padding-right: 65px;
-  position: relative;
+  width: auto;
+  padding: 16px 28px 24px;
   text-align: center;
-  margin-left: 20px;
+  margin: 0;
   border: 4px solid black;
   border-radius: 16px;
-  top: 100px;
   font-size: large;
+  box-sizing: border-box;
 }
 
 .user-profile-div strong {
@@ -532,12 +558,19 @@ body {
 }
 
 .user-posts {
-  width: 900px;
-  position: relative;
+  width: auto;
+  max-width: 100%;
   text-align: center;
-  margin-left: 20px;
-  left: 715px;
-  top: -510px;
+  margin: 0;
+  min-width: 0;
+}
+
+.user-posts .postcontentbox {
+  width: auto;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  box-sizing: border-box;
 }
 
 .user-post-card {
@@ -553,18 +586,22 @@ body {
 
 .user-groups{
   background-color: #9EA0A1;
-  width: 500px;
-  position: absolute;
+  width: auto;
   text-align: center;
-  margin-left: 20px;
+  margin: 0;
   border: 4px solid black;
   border-radius: 16px;
-  left: 1960px;
-  top: 270px;
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 15px;
   font-size: large;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1100px) {
+  .userprofilepage {
+    grid-template-columns: 1fr;
+  }
 }
 
 .user-groups .group-title {

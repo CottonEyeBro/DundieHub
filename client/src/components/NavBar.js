@@ -37,13 +37,28 @@ function NavBar() {
     const user_id = userSession?.id
 
     return (
-        <div className="main-header">  
-        <div className="header">
-            <NavLink className="logo" to="/">DundieHub</NavLink>
-            <p>Welcome to DundieHub!</p>
-        </div>
-            <div className="navbar">
-                <div className = "login">
+        <header className="main-header">
+            <div className="header">
+                <NavLink className="logo" to="/">DundieHub</NavLink>
+                <p>Welcome to DundieHub!</p>
+            </div>
+            <nav className="navbar" aria-label="Main">
+                <div className="signed-in-navbar">
+                    {clog ? (
+                        <>
+                            <div className="feed">
+                                <button className="main-feed-button"><NavLink to="/feed">Main Feed</NavLink></button>
+                            </div>
+                            <div className="user-profile">
+                                <button className="user-profile-button"><NavLink to={`/${user_id}`}>User Profile</NavLink></button>
+                            </div>
+                            <div className="group-profile">
+                                <button className="group-profile-button"><NavLink to="/group-profile">Group Profile</NavLink></button>
+                            </div>
+                        </>
+                    ) : null}
+                </div>
+                <div className="login">
                     {clog ? (
                         <div className="logout-div">
                             <button className="logout-button" onClick={handleLogoutClick}>Logout</button>
@@ -54,25 +69,8 @@ function NavBar() {
                         </div>
                     )}
                 </div>
-                <div className="signed-in-navbar">
-                    {clog ? (
-                        <>
-                            <div className="group-profile">
-                                <button className="group-profile-button"><NavLink to="/group-profile">Group Profile</NavLink></button>
-                            </div>
-                            <div className="user-profile">
-                                <button className="user-profile-button"><NavLink to={`/${user_id}`}>User Profile</NavLink></button>
-                            </div>
-                            <div className="feed">
-                                <button className="main-feed-button"><NavLink to="/feed">Main Feed</NavLink></button>
-                            </div>
-                        </>
-                    ) : (
-                        <></>
-                    )}
-                </div>
-            </div>
-        </div>
+            </nav>
+        </header>
     )
 }
 

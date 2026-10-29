@@ -1,13 +1,8 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 
 function Footer() {
-
-    const location = useLocation()
-    // console.log(location.pathname)
-
     return (
-        <footer className={location.pathname === "/feed" ? "footer-absolute" : "footer-fixed"}>
+        <footer className="site-footer">
             <div className="contacts">
                 <h3>Address: </h3><a href="https://www.google.com/maps/@34.2104502,-118.4365348,3a,75y,3.17h,91.45t/data=!3m6!1e1!3m4!1st6sGrKZAoJL25D3bfMEpFg!2e0!7i16384!8i8192?authuser=0&entry=ttu">1725 Slough Avenue, Suite 200, Scranton, PA</a>
                 <h3>Email: </h3><a href="mailto:support@dundermifflin.com">support@dundermifflin.com</a>
