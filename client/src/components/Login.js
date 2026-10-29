@@ -5,7 +5,7 @@ import SignUpForm from "./SignUpForm"
 
 function Login() {
 
-    const { users, setUsers } = useUserContext();
+    const { setUsers } = useUserContext();
 
     return (
         <div className="login_page">

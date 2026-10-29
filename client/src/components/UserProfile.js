@@ -18,7 +18,7 @@ function UserProfile() {
         <div key={checkUserSession?.user_groups.id} className="userprofilepage">
             <div className="user-profile-div">
                 <h1>User Profile: </h1>
-                <img className="user-photo" src={checkUserSession?.profile_image_url} />
+                <img className="user-photo" src={checkUserSession?.profile_image_url} alt={checkUserSession?.name ? `${checkUserSession.name} profile photo` : ""} />
                 <p>Welcome back, <strong>{checkUserSession?.name}</strong>!</p>
                 <p>Username: <em>&lt;{checkUserSession?.username}&gt;</em></p>
             </div>

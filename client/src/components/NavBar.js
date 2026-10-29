@@ -5,7 +5,7 @@ import { useUserContext } from "../UserContext";
 function NavBar() {
 
     const [userSession, setUserSession] = useState(null)
-    const { users, setUsers } = useUserContext();
+    const { setUsers } = useUserContext();
 
     const history = useHistory()
 

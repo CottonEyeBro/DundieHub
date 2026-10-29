@@ -14,14 +14,13 @@ function PostCard() {
 
     // console.log(checkUserSession)
 
-    const sortedUserPosts = checkUserSession?.posts.sort((a, b) => new Date(b.posted_at) - new Date(a.posted_at));
+    const sortedUserPosts = checkUserSession?.posts
+        ?.slice()
+        .sort((a, b) => new Date(b.posted_at) - new Date(a.posted_at));
 
     function viewUserPosts() {
 
-        // console.log(checkUserSession?.posts)
-        // console.log(sortedUserPosts)
-
-        const userPostCards = checkUserSession?.posts.map((post) => {
+        const userPostCards = sortedUserPosts?.map((post) => {
 
             // console.log(post)
 
