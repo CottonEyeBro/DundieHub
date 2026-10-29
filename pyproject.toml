@@ -10,6 +10,7 @@ dependencies = [
   "flask-bcrypt>=1.0.1",
   "sqlalchemy-serializer>=1.4.1",
   "psycopg2-binary>=2.9.10",
+  "psycopg[binary]>=3.2.3",
 ]
 
 [tool.vercel]

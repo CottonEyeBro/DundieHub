@@ -33,7 +33,14 @@ load_env_file(os.path.join(ROOT_DIR, '.env'))
 
 def normalize_database_url(url):
     if url.startswith('postgres://'):
-        return 'postgresql://' + url[len('postgres://'):]
+        url = 'postgresql://' + url[len('postgres://'):]
+    # Vercel's Flask runtime loads SQLAlchemy's psycopg (v3) dialect for
+    # postgresql URLs. Pin that driver so the function does not crash on import.
+    if os.environ.get('VERCEL'):
+        if url.startswith('postgresql+psycopg2://'):
+            url = 'postgresql+psycopg://' + url[len('postgresql+psycopg2://'):]
+        elif url.startswith('postgresql://'):
+            url = 'postgresql+psycopg://' + url[len('postgresql://'):]
     return url
 
 def database_uri():
@@ -57,6 +64,9 @@ engine_options = {'pool_pre_ping': True}
 if os.environ.get('VERCEL'):
     # PgBouncer already pools connections. Don't keep a pool inside each function.
     engine_options['poolclass'] = NullPool
+    app.config['SESSION_COOKIE_SECURE'] = True
+    app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+    app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = engine_options
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False

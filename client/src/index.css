@@ -253,7 +253,7 @@ body {
 }
 
 .login_page {
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,6 +261,7 @@ body {
   gap: 24px;
   padding: 40px 24px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .signin,
@@ -272,7 +273,23 @@ body {
   font-size: x-large;
   background-color: #ccc;
   box-sizing: border-box;
-  max-width: 100%;
+  width: min(460px, 100%);
+}
+
+.signin > div,
+.signup > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 6px;
+}
+
+.signin > div > h2,
+.signup > div > h2,
+.signin > div > div,
+.signup > div > div {
+  flex: 1 0 100%;
 }
 
 .signin label,
@@ -288,6 +305,7 @@ body {
 .signin-button,
 .signup-button {
   text-align: center;
+  justify-content: center;
 }
 
 .signin button,

@@ -1,21 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const SignUpForm = ({ setUsers }) => {
-
-  const [userSession, setUserSession] = useState(null)
-
-  useEffect(() => {
-    fetch("/check_user_session").then((r) => {
-      if (r.ok) {
-        r.json().then(setUserSession);
-      }
-    });
-  }, []);
-
-  const user_id = userSession?.id
 
   const history = useHistory()
 
@@ -46,12 +34,12 @@ const SignUpForm = ({ setUsers }) => {
       });
 
       if (response.ok) {
-        setTimeout(() => {
-          history.push(`/${user_id}`)
-        }, 125)
         const user = await response.json();
         setUsers(user);
-
+        history.push(`/${user.id}`);
+        setTimeout(() => {
+          window.location.reload()
+        }, 125)
       } else {
         const error = await response.json();
         console.error('Signup failed:', error);
